@@ -1,0 +1,183 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.fc-today-button
+{
+    background-color: #3e3eb9 !important;
+}
+
+.fc-day-today {
+    background: rgba(144, 234, 224, 0.15) !important;
+}
+.invalid-feedback{
+    color: red;
+    font-size: 14px;
+}
+.alert{
+    color: red;
+    font-size: 14px;
+}
+
+.fc-direction-ltr .fc-button-group>.fc-button:not(:last-child) {
+    border-radius: 0px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#profile{
+    min-height: 500px;
+}
+
+#res{
+    overflow: auto;
+}
+
+#res::-webkit-scrollbar {
+    width: 8px;
+}
+#res::-webkit-scrollbar-track {
+    background: #adb2d7;
+}
+
+#res::-webkit-scrollbar-thumb {
+    background-color: #7179b9;
+    border-radius: 10px;
+
+}
+
+.fc-event {
+    font-size: 13px;
+
+}
+.fc-timegrid-event-harness {
+display:inline-flex;
+
+}
+
+#cal{
+    height: 1050px;
+}
+
+.fc-prev-button
+{
+    background-color: #6a71e6 !important;
+}
+.fc-next-button
+{
+    background-color: #6a71e6 !important;
+}
+.fc-dayGridMonth-button
+{
+    background-color: #6480e6 !important;
+}
+
+.fc-timeGridWeek-button
+{
+    background-color: #6480e6 !important;
+}
+.fc-timeGridDay-button
+{
+    background-color: #6480e6 !important;
+}
+.fc-listMonth-button
+{
+    background-color: #6480e6 !important;
+}
+@media (min-width: 1024px) and (max-width: 1960px) {
+    #card{
+        left: 33%;
+        top:10%;
+    }
+    #successModal{
+        left: 35%;
+        top:25%;
+    }
+
+}
+@media (min-width: 768px) and (max-width: 1024px){
+    #card{
+        left: 20%;
+        top: 10%;
+    }
+    .fc-toolbar-chunk{
+        font-size: 15px;
+    }
+    #successModal{
+        left: 20%;
+        top: 25%;
+    }
+
+}
+@media (min-width: 468px) and (max-width: 768px){
+    #card{
+        left: 10%;
+        top: 25%;
+        width: 80%;
+    }
+    .fc-toolbar-chunk{
+        font-size: 15px;
+    }
+    .fc-today-button{
+        margin-top: 5px  !important;
+    }
+    .fc-toolbar-title{
+        font-size: 20px  !important;
+        margin-right: 7px !important;
+    }
+
+    #sentbtn{
+        grid-column-start: 5;
+        padding: 0;
+
+    }
+    #textsent{
+       padding-left: 50px;
+    }
+
+    #successModal{
+        left: 10%;
+        top: 25%;
+        width: 80%;
+    }
+
+}
+@media (min-width: 320px) and (max-width: 468px){
+    #card{
+        left: 5%;
+        top: 10%;
+        width: 90%;
+    }
+    .fc-toolbar-chunk{
+        font-size: 12px;
+    }
+    .fc-today-button{
+        margin-top: 5px  !important;
+    }
+
+    .fc-toolbar-title{
+        font-size: 15px  !important;
+        margin-right: 7px !important;
+    }
+
+    .fc-button-group{
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    #sentbtn{
+        grid-column-start:4;
+        padding: 0;
+    }
+    #chatspan{
+        grid-column-end: span 6;
+    }
+
+    #successModal{
+        left: 5%;
+        top: 30%;
+        width: 90%;
+    }
+
+}
