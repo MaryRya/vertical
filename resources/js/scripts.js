@@ -33,16 +33,16 @@ function ajaxAction(response){//записаться на занятие (кар
         things.value = response.data[0].things;
     }
     document.getElementById("coach").value  = response.data[0].name;
-    document.getElementById("count").value  = response.data[0].count_place;
+    document.getElementById("count").value  = response.data[0].count_places;
     document.getElementById("time").value  = response.data[0].start_time.slice(0, 5) + " - "
         +response.data[0].end_time.slice(0, 5);
     document.getElementById("id_time").value  = response.data[0].id_time_lesson;
     document.getElementById("date_r").value  = response.data[0].date_lesson;
-    document.getElementById("id_users").value  = response.data[0].id_users;
+    document.getElementById("id_user").value  = response.data[0].id_user;
     if(response.data[0].date_lesson < getNowDate()){
         document.getElementById("sub_z").style.display = "none";
     }
-    if(response.data[0].count_place <= 0){
+    if(response.data[0].count_places <= 0){
         document.getElementById("sub_z").setAttribute('disabled','');
     }
 }

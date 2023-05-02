@@ -49,10 +49,10 @@
                         <div>
                             <a class="md:text-sm text-xs font-medium text-gray-500 mr-2">Присутсвие</a>
                             @if ($d->date_lesson == date("Y-m-d"))
-                                @if ($d->att == 1)
-                                    <input id="check_{{$d->id_records}}" onclick="terms_check({{$d->id_records}}, '{{ csrf_token() }}')" aria-describedby="terms" type="checkbox" name="terms" class=" border-gray-300 rounded  hover:bg-blue-700 " required checked>
+                                @if ($d->attendance == 1)
+                                    <input id="check_{{$d->id_record}}" onclick="terms_check({{$d->id_record}}, '{{ csrf_token() }}')" aria-describedby="terms" type="checkbox" name="terms" class=" border-gray-300 rounded  hover:bg-blue-700 " required checked>
                                 @else
-                                    <input id="check_{{$d->id_records}}" onclick="terms_check({{$d->id_records}}, '{{ csrf_token() }}')" aria-describedby="terms" type="checkbox" name="terms" class=" border-gray-300 rounded  hover:bg-blue-700 " required>
+                                    <input id="check_{{$d->id_record}}" onclick="terms_check({{$d->id_record}}, '{{ csrf_token() }}')" aria-describedby="terms" type="checkbox" name="terms" class=" border-gray-300 rounded  hover:bg-blue-700 " required>
                                 @endif
                             @else
                                 <input aria-describedby="terms" type="checkbox" name="terms" class=" border-gray-300 rounded  hover:bg-blue-700 " required disabled>

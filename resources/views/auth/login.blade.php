@@ -1,6 +1,5 @@
 @extends('main')
 @section('content')
-
         <div class=" h-screen flex flex-col items-center px-6 bg-indigo-50 mx-auto py-10">
             <div class="w-full bg-white rounded-lg shadow-md  border border-gray-200 md:mt-0 sm:max-w-md  ">
                 <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
@@ -29,9 +28,18 @@
                             @enderror
                         </div>
                         <button type="submit" class="w-full text-white bg-indigo-600 hover:bg-indigo-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center ">Войти</button>
-                        <p class="text-sm font-light text-gray-500 ">
+                        <div class="flex justify-between ">
+                        <p class="text-sm font-light text-gray-500">
                             Нет аккаунта? <a href="/register" class="font-medium text-primary-600 hover:underline">Создайте его</a>
                         </p>
+                        <div>
+                        @if (Route::has('password.request'))
+                            <a class="btn btn-link text-sm font-medium text-primary-600 hover:underline" href="{{ route('password.request') }}">
+                                Забыли пароль?
+                            </a>
+                        @endif
+                        </div>
+                        </div>
                     </form>
                 </div>
             </div>

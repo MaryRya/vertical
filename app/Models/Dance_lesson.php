@@ -13,7 +13,10 @@ class Dance_lesson extends Model
         'things',
         'lesson_price',
         'lesson_description',
-        'img_lesson'];
+        'img_lesson',
+        'img_lesson',
+        'created_at',
+        'updated_at'];
     protected  $guarded = ['id_lesson'];
-    public $timestamps = false;
+
 }

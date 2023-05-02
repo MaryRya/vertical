@@ -9,7 +9,7 @@ class Reviews extends Model
 {
     use HasFactory;
     protected $table = 'reviews';
-    protected $fillable = ['date_reviews', 'text', 'id_users'];
+    protected $fillable = ['date_reviews', 'text', 'id_user', 'created_at',
+        'updated_at'];
     protected  $guarded = ['id_reviews'];
-    public $timestamps = false;
 }

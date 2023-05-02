@@ -22,7 +22,7 @@
                         <p readonly id="description" class="sm:text-base text-sm leading-relaxed bg-indigo-50 text-gray-900"></p>
                         <input type="hidden" name="id_schedule" id="id_schedule">
                         <input type="hidden" name="date_r" id="date_r">
-                        <input type="hidden" name="id_users" id="id_users">
+                        <input type="hidden" name="id_user" id="id_user">
                         <div class="pb-2">
                             <span class="font-medium sm:text-base text-sm">Стоимость: </span>
                             <input type="text" id="price" readonly class="bg-indigo-50 sm:text-base text-sm font-medium border-none w-14 p-1">руб. <br>

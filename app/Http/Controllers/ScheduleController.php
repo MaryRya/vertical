@@ -30,7 +30,7 @@ class ScheduleController extends Controller
     public function schedule()
     {
         if(auth()->check()){
-            $chat_views = Chat::where([['id_users', '=', auth()->user()->id], ['view', '=', 0]]);
+            $chat_views = Chat::where([['id_user', '=', auth()->user()->id], ['view', '=', 0]]);
             $count = $chat_views->count();
         }
         else{
@@ -40,7 +40,7 @@ class ScheduleController extends Controller
             $data = Schedule::join("Time_lesson", "Time_lesson.id_time_lesson", "Schedule.id_time_lesson")
                 ->join("Dance_lesson", "Dance_lesson.id_lesson", "Schedule.id_lesson")
                 ->join("Hall", "Hall.id_hall", "Schedule.id_hall")
-                ->join("users", "users.id", "Schedule.id_users")
+                ->join("users", "users.id", "Schedule.id_user")
                 ->where("users.id", auth()->user()->id)
                 ->get();
         }
@@ -48,7 +48,7 @@ class ScheduleController extends Controller
             $data = Schedule::join("Time_lesson", "Time_lesson.id_time_lesson", "Schedule.id_time_lesson")
                 ->join("Dance_lesson", "Dance_lesson.id_lesson", "Schedule.id_lesson")
                 ->join("Hall", "Hall.id_hall", "Schedule.id_hall")
-                ->join("users", "users.id", "Schedule.id_users")
+                ->join("users", "users.id", "Schedule.id_user")
                 ->get();
         }
         $les = Dance_lesson::select("lesson_name","id_lesson")->get();
@@ -70,9 +70,9 @@ class ScheduleController extends Controller
     public function ajaxForm(Request $request){
         $id = $request->id;
         $date_s = mb_substr($request->date, 0, 10);
-        $les = Schedule::select("Schedule.id_schedule", "Dance_lesson.lesson_name", "Schedule.count_place", "Schedule.date_lesson","Schedule.id_users", "Dance_lesson.lesson_description", "Dance_lesson.lesson_price", "Users.name", "Time_lesson.start_time", "Time_lesson.end_time", "Time_lesson.id_time_lesson", "Hall.id_hall", "Hall.hall_name", "Dance_lesson.lesson_description_all", "Dance_lesson.things")
+        $les = Schedule::select("Schedule.id_schedule", "Dance_lesson.lesson_name", "Schedule.count_places", "Schedule.date_lesson","Schedule.id_user", "Dance_lesson.lesson_description", "Dance_lesson.lesson_price", "Users.name", "Time_lesson.start_time", "Time_lesson.end_time", "Time_lesson.id_time_lesson", "Hall.id_hall", "Hall.hall_name", "Dance_lesson.lesson_description_all", "Dance_lesson.things")
             ->join("Dance_lesson", "Dance_lesson.id_lesson", "Schedule.id_lesson")
-            ->join("users", "users.id", "Schedule.id_users")
+            ->join("users", "users.id", "Schedule.id_user")
             ->join("Time_lesson", "Time_lesson.id_time_lesson", "Schedule.id_time_lesson")
             ->join("Hall", "Hall.id_hall", "Schedule.id_hall")
             ->where([["Dance_lesson.id_lesson", $id], ['Schedule.date_lesson', '=', $date_s], ["id_schedule", "=", $request->id_schedule]])->get();
@@ -93,7 +93,7 @@ class ScheduleController extends Controller
             }
             Schedule::where('id_schedule', $request->id_schedule)->update
             ([
-                'count_place' => ($request->count - 1),
+                'count_places' => ($request->count - 1),
             ]);
             $records_clients->id_schedule = $data["id_schedule"];
             $records_clients->id_user = auth()->user()->id;
@@ -134,8 +134,8 @@ class ScheduleController extends Controller
                 'id_time_lesson' => 'required',
                 'id_lesson' => 'required',
                 'id_hall' => 'required',
-                'id_users' => 'required',
-                'count_place' => 'required',
+                'id_user' => 'required',
+                'count_places' => 'required',
             ]);
             if($data["date_lesson"] < date("Y-m-d")) return redirect('/scheduleAdd');
             $schedule->fill($data);
@@ -193,7 +193,7 @@ class ScheduleController extends Controller
     }
 
     public function requestSentCoach($id_schedule){
-        return Schedule::select('users.email', 'users.name', 'schedule.date_lesson', 'dance_lesson.lesson_name', 'time_lesson.start_time')->join('Time_lesson', 'Time_lesson.id_time_lesson', 'Schedule.id_time_lesson')->join('users','schedule.id_users', 'users.id')->join('dance_lesson', 'dance_lesson.id_lesson', 'schedule.id_lesson')->where("schedule.id_schedule", $id_schedule)->groupBy('users.email')->get();
+        return Schedule::select('users.email', 'users.name', 'schedule.date_lesson', 'dance_lesson.lesson_name', 'time_lesson.start_time')->join('Time_lesson', 'Time_lesson.id_time_lesson', 'Schedule.id_time_lesson')->join('users','schedule.id_user', 'users.id')->join('dance_lesson', 'dance_lesson.id_lesson', 'schedule.id_lesson')->where("schedule.id_schedule", $id_schedule)->groupBy('users.email')->get();
     }
     public function ajaxDeleteSchedule(Request $request){
         if($this->auth_admin()) {

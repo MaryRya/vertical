@@ -9,7 +9,7 @@ class Chat extends Model
 {
     use HasFactory;
     protected $table = 'chat';
-    protected $fillable = ['question', 'answer', 'id_users', 'view'];
+    protected $fillable = ['question', 'answer', 'id_user', 'view', 'created_at',
+        'updated_at'];
     protected  $guarded = ['id_chat'];
-    public $timestamps = false;
 }

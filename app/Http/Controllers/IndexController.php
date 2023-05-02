@@ -31,7 +31,7 @@ class IndexController extends Controller
             $data = $request->validate([
                 'text' => 'required',
             ]);
-            $data["id_users"] = auth()->user()->id;
+            $data["id_user"] = auth()->user()->id;
             $user = Reviews::create($data);
             $user->save();
 
@@ -45,16 +45,16 @@ class IndexController extends Controller
     public function profile()
     {
         if(isset(auth()->user()->name)){
-            $chat_views = Chat::where([['id_users', '=', auth()->user()->id], ['view', '=', 0]]);
+            $chat_views = Chat::where([['id_user', '=', auth()->user()->id], ['view', '=', 0]]);
             $count = $chat_views->count();
             $data = Dance_lesson::
             select("Dance_lesson.lesson_name", "Schedule.date_lesson", "Time_lesson.start_time",
-                "Time_lesson.end_time", "Hall.hall_name","Users.name", "Records_clients.id_records", "Schedule.id_schedule")
+                "Time_lesson.end_time", "Hall.hall_name","Users.name", "Records_clients.id_record", "Schedule.id_schedule")
                 ->join("Schedule", "Schedule.id_lesson", "Dance_lesson.id_lesson")
                 ->join("Time_lesson", "Time_lesson.id_time_lesson", "Schedule.id_time_lesson")
                 ->join("Hall", "Hall.id_hall", "Schedule.id_hall")
                 ->join("Records_clients", "Records_clients.id_schedule", "Schedule.id_schedule")
-                ->join("Users", "Users.id", "Schedule.id_users")
+                ->join("Users", "Users.id", "Schedule.id_user")
                 ->where("Records_clients.id_user", auth()->user()->id)
                 ->get();
 
@@ -66,10 +66,10 @@ class IndexController extends Controller
 
     public function cancelLesson(Request $request){
         if(auth()->check()){
-            $count_place = Schedule::select("count_place")->where('id_schedule', $request->id_schedule)->get();
-            Records_clients::where('id_records', $request->id_records)->delete();
+            $count_places = Schedule::select("count_places")->where('id_schedule', $request->id_schedule)->get();
+            Records_clients::where('id_record', $request->id_record)->delete();
             Schedule::where('id_schedule', $request->id_schedule)->update([
-                'count_place' => ($count_place[0]->count_place + 1)
+                'count_places' => ($count_places[0]->count_places + 1)
             ]);
             return redirect("profile");
         }
@@ -120,7 +120,7 @@ class IndexController extends Controller
     public function profileEdit()
     {
         if(auth()->check()){
-            $chat_views = Chat::where([['id_users', '=', auth()->user()->id], ['view', '=', 0]]);
+            $chat_views = Chat::where([['id_user', '=', auth()->user()->id], ['view', '=', 0]]);
             $count = $chat_views->count();
             return view('profileEdit',  ['count' => $count]);
         } else return redirect('/');
@@ -138,10 +138,10 @@ class IndexController extends Controller
         if(isset(auth()->user()->id_role) && (auth()->user()->id_role == 3)) return redirect('/schedule');
         if ($this->auth_admin()) return redirect('/adminIndex');
         if(auth()->check()){
-            $chat_views = Chat::where([['id_users', '=', auth()->user()->id], ['view', '=', 0]])->whereNotNull('answer');
+            $chat_views = Chat::where([['id_user', '=', auth()->user()->id], ['view', '=', 0]])->whereNotNull('answer');
             $count = $chat_views->count();
         }
-        $reviews = Reviews::join("Users","Users.id","Reviews.id_users")->orderBy("date_reviews", 'DESC')->limit(3)->get();
+        $reviews = Reviews::join("Users","Users.id","Reviews.id_user")->orderBy("date_reviews", 'DESC')->limit(3)->get();
         $i = 0;
         foreach($reviews as $d){
             $date = explode(' ', $d->date_reviews);
@@ -149,7 +149,7 @@ class IndexController extends Controller
             $i++;
         }
 
-        $reviews_all = Reviews::join("Users","Users.id","Reviews.id_users")->orderBy("date_reviews", 'DESC')->limit(20)->offset(3)->get();
+        $reviews_all = Reviews::join("Users","Users.id","Reviews.id_user")->orderBy("date_reviews", 'DESC')->limit(20)->offset(3)->get();
         $i = 0;
         foreach($reviews_all as $d){
             $date = explode(' ', $d->date_reviews);

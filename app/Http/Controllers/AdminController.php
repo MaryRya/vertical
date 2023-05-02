@@ -282,9 +282,9 @@ class AdminController extends Controller
     }
 
     public function ajaxCheck(Request $request){
-        Records_clients::where('id_records', $request->id)->update
+        Records_clients::where('id_record', $request->id)->update
         ([
-            'att' => $request->ckeck_value,
+            'attendance' => $request->ckeck_value,
         ]);
 
         return ['data'=>1];

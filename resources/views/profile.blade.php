@@ -101,7 +101,7 @@
                                         <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                                             <form method="POST" action="{{ route('cancelLesson') }}">
                                                 {{ csrf_field() }}
-                                                <input type="hidden" name="id_records" value="{{$d->id_records}}">
+                                                <input type="hidden" name="id_record" value="{{$d->id_record}}">
                                                 <input type="hidden" name="id_schedule" value="{{$d->id_schedule}}">
                                                 @if ($d->date_lesson < $datenow)
                                                 @else
