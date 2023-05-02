@@ -15,28 +15,7 @@ function check(){
     }
 }
 
-var count_r = document.getElementById("count");
-if(count_r != null)
-{
-    count_r.oninput = function() {
-        var count = document.getElementById("count").value;
-        if(count > 5){
-            document.getElementById("count").value = 5;
-        }
-    };
-}
-var price_lesson = document.getElementById("price");
-if(price_lesson != null)
-{
-    price_lesson.oninput = function() {
-        var price = document.getElementById("price").value;
-        if(price > 2000){
-            document.getElementById("price").value = 2000;
-        }
-    };
-}
-
-function ajaxAction(response){//записаться на занятие
+function ajaxAction(response){//записаться на занятие (карточка занятия)
 
     if(response.data[0].hall_name !== undefined){
         document.getElementById("hall").value  = response.data[0].hall_name;

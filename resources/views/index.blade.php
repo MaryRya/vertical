@@ -28,9 +28,9 @@
             </div>
         </div>
 
-        <div class="flex flex-wrap  gap-5 justify-center p-5">
+        <div id="lesson" class="flex flex-wrap  gap-5 justify-center p-5">
             @foreach($dan->mass as $d)
-                <div class="max-w-sm h-[550px] bg-white border-2 border-indigo-200 border-b-teal-100 border-t-teal-100 rounded-lg ">
+                <div class="max-w-xs xl:max-w-sm h-[550px] bg-white border-2 border-indigo-200 border-b-teal-100 border-t-teal-100 rounded-lg ">
                     <img class="rounded-t-lg w-full h-1/2" src="images/{{$d->lesson_img}}" alt=""/>
                     <div class=" relative  p-5 h-2/4">
                         <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 ">{{$d->lesson_name}}</h5>

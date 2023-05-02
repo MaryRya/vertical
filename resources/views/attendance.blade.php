@@ -3,7 +3,7 @@
 
 @section('content')
 
-    <div class="items-center h-screen px-5 py-10 xl:px-72 md:px-20">
+    <div class="items-center px-5 py-10 xl:px-72 md:px-20" style="min-height: 500px;">
         <div class="flex flex-wrap items-center justify-between mb-5 px-5">
             <a href="/adminIndex" type="button" class="  sm:text-sm text-xs font-semibold leading-6 text-gray-600">Вернуться назад</a>
             <div class="w-full md:w-1/2 ">

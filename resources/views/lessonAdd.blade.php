@@ -68,7 +68,7 @@
                     <div class="sm:col-span-2">
                         <label for="price" class="block text-sm font-medium leading-6 text-gray-900">Цена</label>
                         <div class="mt-2">
-                            <input type="number" name="price" id="price" autocomplete="family-name"
+                            <input type="number" name="price" id="price" autocomplete="price" min="500" max="2000"
                                    class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 @error('price') is-invalid @enderror" value="{{ old('price') }}">
                             @error('price')
                             <div class="alert alert-danger">{{ 'Заполните поле.' }}</div>
