@@ -17,7 +17,7 @@ class UsersExport implements FromCollection
             ->join("Hall", "Hall.id_hall", "Schedule.id_hall")
             ->selectRaw("Users.name, Schedule.date_lesson, Dance_lesson.lesson_name, Dance_lesson.lesson_price, Hall.hall_name,
                 CASE
-                    WHEN records_clients.att > 0 THEN 'Присутствие'
+                    WHEN records_clients.attendance > 0 THEN 'Присутствие'
                     ELSE 'Отсутствие'
                 END ")
             ->get();

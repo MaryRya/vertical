@@ -148,7 +148,6 @@ class IndexController extends Controller
             $reviews[$i]->date = $date[0];
             $i++;
         }
-
         $reviews_all = Reviews::join("Users","Users.id","Reviews.id_user")->orderBy("date_reviews", 'DESC')->limit(20)->offset(3)->get();
         $i = 0;
         foreach($reviews_all as $d){

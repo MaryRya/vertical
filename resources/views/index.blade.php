@@ -6,11 +6,10 @@
         <div class="gap-16 items-center px-4 mx-auto max-w-screen-xl lg:grid lg:grid-cols-2 py-6">
             <div class="font-light text-gray-500 sm:text-lg ">
                 <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 ">Ощути свободу движений</h2>
-                <p class="mb-4">Мы предоставляем своим клиентам услуги танцев и фитнеса. В перечне услуг множество
-                    танцевальных направлений и различные виды занятий, которые преподают высококвалифицированные
-                    специалистыю
+                <p class="mb-4">Vertical - команда тех, кто любит движение и драйв, мы помогаем создавать красивые тела и выражать эмоции через танцевальные и гимнастические направления.
+                    Вернем вам стройность и гибкость, силу и тонус, научим танцевать и трюкачить в том стиле, который вы выберете.
                 </p>
-                <p>Даже человек без физической подготовки сможет выбрать для себя занятие!</p>
+                <p>Добро пожаловать в мир фитнеса, воздушной гимнастики и танцев!</p>
             </div>
             <div>
                 <div class="grid grid-cols-2 gap-4 mt-8">
@@ -22,9 +21,9 @@
     </section>
     @foreach($dance as $dan)
         <div id="direction" class=" flex w-full h-16 bg-blue-100">
-            <div class="items-center flex ml-auto mr-auto">
+            <div class="items-center flex mx-auto">
                 <img src="images/svg/{{$dan->img_direction}}" class="h-6 items-center sm:h-9"/>
-                <p class="px-4 md:px-1 self-center text-xl font-semibold  text-center">{{$dan->name_direction}}</p>
+                <p class="px-4 md:px-1 self-center text-xl font-semibold">{{$dan->name_direction}}</p>
             </div>
         </div>
 
@@ -95,7 +94,7 @@
     <section id="team" class="bg-white">
         <div class="py-8 px-6 mx-auto max-w-screen-xl lg:py-16 lg:px-6 ">
             <div class="mx-auto max-w-screen-sm text-center mb-8 lg:mb-16">
-                <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900">Наша команда</h2>
+                <h2 class="mb-4 text-3xl md:text-4xl tracking-tight font-extrabold text-gray-900">Наша команда</h2>
                 <p class="font-light text-gray-500 lg:mb-16 sm:text-xl ">Можно работать и год, и два, и много-много лет,
                     а тренером так и не стать. Однако наши тренеры реализовали себя в профессиональном плане и нашли
                     свое призвание, по велению свыше!
@@ -119,13 +118,28 @@
             </div>
         </div>
     </section>
-
+    <div class="border-2 border-indigo-400 rounded-xl mx-10 mb-10">
+    <div class="flex w-full">
+        <div class="items-center flex mx-auto py-5">
+            <p class="text-3xl md:text-4xl tracking-tight font-extrabold text-gray-900">Наши преимущества</p>
+        </div>
+    </div>
+    <div class="font-light text-gray-500 sm:text-xl mx-auto mx-14 pb-10 pt-5">
+        <div class="md:flex md:justify-between">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-8 xl:grid-cols-4">
+                <a>❤ Современные, просторные и уютные залы, оборудованные всем необходимым для эффективных занятий.</a>
+                <a>❤ Профессиональные инструкторы, тренеры и хореографы, любящие свое дело и своих клиентов.</a>
+                <a>❤ Небольшие группы для занятий, что позволяет обеспечить индивидуальный подход к каждому ученику.</a>
+                <a>❤ По любому из выбранных направлений - обучение с нуля.</a>
+            </div>
+        </div>
+    </div>
+    </div>
     <div id="reviews" class=" flex w-full h-16 bg-blue-100">
         <div class="items-center flex ml-auto mr-auto">
             <p class="px-4  self-center text-xl font-semibold  text-center">Отзывы</p>
         </div>
     </div>
-
     <section id="reviews" class="bg-white py-8 lg:py-5">
         <div class="max-w-2xl mx-auto px-4">
             <div class="flex justify-between items-center mb-6">
@@ -160,7 +174,6 @@
                         <div id="deleteModal" tabindex="-1" aria-hidden="true"
                              class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-modal md:h-full">
                             <div class="relative p-4 w-full max-w-md h-full md:h-auto">
-                                <!-- Modal content -->
                                 <div class="relative p-4 text-center bg-white rounded-lg shadow  sm:p-5">
                                     <button>
                                         <img class="w-7 h-7 absolute top-2.5 right-2.5 rounded-lg text-sm p-1.5 ml-auto"

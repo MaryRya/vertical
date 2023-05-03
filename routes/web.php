@@ -27,7 +27,6 @@ Auth::routes();
 Route::get('/home', [IndexController::class, 'index']);
 Route::get('/', [IndexController::class, 'index']);
 Route::get('/agreement',  [IndexController::class, 'agreement'])->name('agreement');//соглашение
-//Route::get('/show/{id}',  [IndexController::class, 'show'])->name('show');
 Route::get('/profile',  [IndexController::class, 'profile'])->name('profile');//лк
 Route::get('/profileEdit',  [IndexController::class, 'profileEdit'])->name('profileEdit');//изменение данных
 Route::post('/profileEditAction',  [IndexController::class, 'profileEditAction'])->name('profileEditAction');//кнопка изменения
