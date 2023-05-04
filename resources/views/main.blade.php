@@ -126,7 +126,7 @@
 </header>
 @yield('content')
 
-<footer id="footer" class="p-4  bg-indigo-200 sm:p-6 ">
+<footer id="footer" class="p-4  bg-[#e0e0f5] sm:p-6 ">
     <div class="mx-auto max-w-screen-xl">
         <div class="md:flex md:justify-between">
             <div class="mb-6 md:mb-0">
@@ -160,7 +160,7 @@
                             <a class=" hover:underline ">+7(3452)61-07-50</a>
                         </li>
                         <li>
-                            <a class=" hover:underline">+7 932 351 0750</a>
+                            <a class="hover:underline">+7 932 351 0750</a>
                         </li>
                     </ul>
                 </div>

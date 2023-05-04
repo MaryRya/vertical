@@ -20,10 +20,10 @@
         </div>
     </section>
     @foreach($dance as $dan)
-        <div id="direction" class=" flex w-full h-16 bg-blue-100">
+        <div id="direction" class=" flex mx-auto h-16 bg-[#e0e0f5] max-w-7xl rounded-md">
             <div class="items-center flex mx-auto">
                 <img src="images/svg/{{$dan->img_direction}}" class="h-6 items-center sm:h-9"/>
-                <p class="px-4 md:px-1 self-center text-xl font-semibold">{{$dan->name_direction}}</p>
+                <p class="px-4 md:px-1 self-center text-xl sm:text-2xl font-semibold">{{$dan->name_direction}}</p>
             </div>
         </div>
 
@@ -102,13 +102,13 @@
             </div>
             <div class="grid gap-8 mb-2 md:grid-cols-2">
                 @foreach ($users as $user)
-                    <div class="items-center bg-indigo-100 rounded-lg shadow sm:flex ">
+                    <div class="items-center bg-[#f8f8e9] rounded-lg shadow sm:flex ">
                         <img class=" md:h-full sm:w-1/2 rounded-lg sm:rounded-none sm:rounded-l-lg"
                              src="images/coaches/{{$user->photo}}"
                              alt="{{$user->name}}">
                         <div class="p-5">
                             <h3 class="text-xl font-bold tracking-tight text-gray-900 ">
-                                <a href="#">{{$user->name}}</a>
+                                <a>{{$user->name}}</a>
                             </h3>
                             <span class="text-gray-500 ">Тренер</span>
                             <p class="mt-3 mb-4 font-light text-gray-500 ">{{$user->coach_description}}</p>
@@ -124,7 +124,7 @@
             <p class="text-3xl md:text-4xl tracking-tight font-extrabold text-gray-900">Наши преимущества</p>
         </div>
     </div>
-    <div class="font-light text-gray-500 sm:text-xl mx-auto mx-14 pb-10 pt-5">
+    <div class="font-light text-gray-500 sm:text-xl mx-auto mx-14 pb-10 pt-5 px-5">
         <div class="md:flex md:justify-between">
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-8 xl:grid-cols-4">
                 <a>❤ Современные, просторные и уютные залы, оборудованные всем необходимым для эффективных занятий.</a>
@@ -135,9 +135,9 @@
         </div>
     </div>
     </div>
-    <div id="reviews" class=" flex w-full h-16 bg-blue-100">
+    <div id="reviews" class="  flex mx-auto h-16 bg-[#e0e0f5] max-w-7xl rounded-md">
         <div class="items-center flex ml-auto mr-auto">
-            <p class="px-4  self-center text-xl font-semibold  text-center">Отзывы</p>
+            <p class="px-4 text-xl sm:text-2xl font-semibold  text-center">Отзывы</p>
         </div>
     </div>
     <section id="reviews" class="bg-white py-8 lg:py-5">

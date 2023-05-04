@@ -2,13 +2,14 @@
 @section('content')
 
     <div id="cal" class="xl:p-40 xl:py-10 p-5">
+
         <div id='calendar'></div>
     </div>
     <div id="medium-modal-1" tabindex="-2"
          class="fixed top-0 left-0 right-0 z-50 hidden  p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] md:h-full">
         <div  id="card" class="relative w-full h-full max-w-lg md:h-auto">
             <div  class="relative  rounded-lg shadow border-4 border-t-2 border-indigo-300 border-r-teal-100 shadow-indigo-300  shadow-lg">
-                <form  method="POST" action="{{ route('eventAction') }}">
+                <form  method="POST" action="{{ route('enrollLesson') }}">
                     {{ csrf_field() }}
                     <div class="flex bg-indigo-50 items-center justify-between p-3 border-b rounded-t">
                         <h3 id="date">
@@ -84,7 +85,7 @@
                     el.style.display = "block"
                     document.getElementById("title").value = info.event.title;
                     $.ajax({
-                        url: "/ajax-form",
+                        url: "/cardLesson",
                         type:"POST",
                         data:{
                             "_token": "{{ csrf_token() }}",
@@ -94,7 +95,7 @@
                         },
                         success:function(response){
                             if(response !== 500){
-                                ajaxAction(response);
+                                cardLesson(response);
                             }
                         },
                     });
@@ -123,7 +124,7 @@
                     }
                     else{
                         $.ajax({
-                            url: "/ajaxChange",
+                            url: "/scheduleChange",
                             type:"POST",
                             data:{
                                 "_token": "{{ csrf_token() }}",

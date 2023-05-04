@@ -15,7 +15,7 @@ function check(){
     }
 }
 
-function ajaxAction(response){//записаться на занятие (карточка занятия)
+function cardLesson(response){//записаться на занятие (карточка занятия)
 
     if(response.data[0].hall_name !== undefined){
         document.getElementById("hall").value  = response.data[0].hall_name;
@@ -98,7 +98,7 @@ function ChatGetAjax2(response){
 function DeleteSchedule(token){
     var id_schedule = document.getElementById("id_schedule").value;
     $.ajax({
-        url: "/ajaxDeleteSchedule",
+        url: "/DeleteSchedule",
         type:"POST",
         data:{
             "_token": token,

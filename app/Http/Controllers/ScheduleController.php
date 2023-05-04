@@ -56,6 +56,7 @@ class ScheduleController extends Controller
         $i=0;
         foreach($data as $d){
             $arr[$i]["start"] = $d->date_lesson." ".$d->start_time;
+            $arr[$i]["end"] = $d->date_lesson." ".$d->end_time;
             $arr[$i]["title"] = $d->lesson_name;
             $arr[$i]["id"] = $d->id_lesson;
             $arr[$i]["groupId"] = $d->id_schedule;
@@ -67,7 +68,7 @@ class ScheduleController extends Controller
         return view('schedule', ['data'=>json_encode($arr), 'les'=>$les, 'event'=>0], ['count' => $count]);
     }
 
-    public function ajaxForm(Request $request){
+    public function cardLesson(Request $request){
         $id = $request->id;
         $date_s = mb_substr($request->date, 0, 10);
         $les = Schedule::select("Schedule.id_schedule", "Dance_lesson.lesson_name", "Schedule.count_places", "Schedule.date_lesson","Schedule.id_user", "Dance_lesson.lesson_description", "Dance_lesson.lesson_price", "Users.name", "Time_lesson.start_time", "Time_lesson.end_time", "Time_lesson.id_time_lesson", "Hall.id_hall", "Hall.hall_name", "Dance_lesson.lesson_description_all", "Dance_lesson.things")
@@ -79,7 +80,7 @@ class ScheduleController extends Controller
         return ['data'=>$les, 'event'=>0];
     }
 
-    public function eventAction(Request $request, Records_clients $records_clients){
+    public function enrollLesson(Request $request, Records_clients $records_clients){
         if(isset(auth()->user()->name)){
             $data = $request->validate([
                 'id_schedule' => 'required',
@@ -89,7 +90,7 @@ class ScheduleController extends Controller
                 ->where([ ['Schedule.date_lesson', '=', $request->date_r], ['Schedule.id_time_lesson', '=', $request->id_time], ["records_clients.id_user", '=', auth()->user()->id]])
                 ->get();
             if($count_sep->count() > 0){
-                return redirect("/profile");
+                return redirect("/schedule");
             }
             Schedule::where('id_schedule', $request->id_schedule)->update
             ([
@@ -195,7 +196,7 @@ class ScheduleController extends Controller
     public function requestSentCoach($id_schedule){
         return Schedule::select('users.email', 'users.name', 'schedule.date_lesson', 'dance_lesson.lesson_name', 'time_lesson.start_time')->join('Time_lesson', 'Time_lesson.id_time_lesson', 'Schedule.id_time_lesson')->join('users','schedule.id_user', 'users.id')->join('dance_lesson', 'dance_lesson.id_lesson', 'schedule.id_lesson')->where("schedule.id_schedule", $id_schedule)->groupBy('users.email')->get();
     }
-    public function ajaxDeleteSchedule(Request $request){
+    public function DeleteSchedule(Request $request){
         if($this->auth_admin()) {
             $users_tr = $this->requestSentCoach($request->id_schedule);
             foreach($users_tr as $users_t){

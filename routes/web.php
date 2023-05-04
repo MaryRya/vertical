@@ -52,12 +52,12 @@ Route::match(['get','post'],'/attendance',  [AdminController::class, 'attendance
 Route::match(['get','post'],'/ajax-check',  [AdminController::class, 'ajaxCheck'])->name('ajaxCheck');//присутсвие
 
 Route::get('/schedule',  [ScheduleController::class, 'schedule'])->name('schedule');//расписание
-Route::post('/ajax-form',  [ScheduleController::class, 'ajaxForm'])->name('ajaxForm');//запрос данных на формирование занятий
-Route::post('/eventAction',  [ScheduleController::class, 'eventAction'])->name('eventAction');//записаться на занятие
-Route::post('/scheduleAction',  [ScheduleController::class, 'scheduleAction'])->name('scheduleAction');//кнопка добавления расп
+Route::post('/cardLesson',  [ScheduleController::class, 'cardLesson'])->name('cardLesson');//запрос данных на формирование занятий
+Route::post('/enrollLesson',  [ScheduleController::class, 'enrollLesson'])->name('enrollLesson');//записаться на занятие
 Route::get('/scheduleAdd',  [ScheduleController::class, 'scheduleAdd'])->name('scheduleAdd');//добавление расписания
-Route::post('/ajaxChange',  [ScheduleController::class, 'scheduleChange'])->name('scheduleChange'); //перемещение занятия (админ)
-Route::post('/ajaxDeleteSchedule',  [ScheduleController::class, 'ajaxDeleteSchedule'])->name('ajaxDeleteSchedule'); //удаление
+Route::post('/scheduleAction',  [ScheduleController::class, 'scheduleAction'])->name('scheduleAction');//кнопка добавления расп
+Route::post('/scheduleChange',  [ScheduleController::class, 'scheduleChange'])->name('scheduleChange'); //перемещение занятия (админ)
+Route::post('/DeleteSchedule',  [ScheduleController::class, 'DeleteSchedule'])->name('DeleteSchedule'); //удаление
 Route::get('/setEmail',  [ScheduleController::class, 'setEmail'])->name('setEmail');//оправление сообщения
 Route::get('/requestSent',  [ScheduleController::class, 'requestSent'])->name('requestSent');//запрос по пользователям
 Route::get('/requestSentCoach',  [ScheduleController::class, 'requestSentCoach'])->name('requestSentCoach');//запрос по тренерам

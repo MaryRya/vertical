@@ -55,7 +55,7 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users', 'regex:/gmail/'],
             'phone' => ['required', 'string', 'max:255'],
-            'password' => ['required', 'string', 'confirmed', Password::min(8)->letters()->numbers()->symbols()->uncompromised()], $message
+            'password' => ['required', 'string', 'confirmed', Password::min(8)->letters()->numbers()->uncompromised()], $message
         ]);
     }
 
