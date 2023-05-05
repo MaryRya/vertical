@@ -102,7 +102,7 @@
             </div>
             <div class="grid gap-8 mb-2 md:grid-cols-2">
                 @foreach ($users as $user)
-                    <div class="items-center bg-[#f8f8e9] rounded-lg shadow sm:flex ">
+                    <div class="items-center bg-[#f8f8e9] rounded-lg shadow-xl shadow-[#e0e0f5] sm:flex ">
                         <img class=" md:h-full sm:w-1/2 rounded-lg sm:rounded-none sm:rounded-l-lg"
                              src="images/coaches/{{$user->photo}}"
                              alt="{{$user->name}}">

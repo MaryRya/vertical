@@ -141,17 +141,17 @@ class IndexController extends Controller
             $chat_views = Chat::where([['id_user', '=', auth()->user()->id], ['view', '=', 0]])->whereNotNull('answer');
             $count = $chat_views->count();
         }
-        $reviews = Reviews::join("Users","Users.id","Reviews.id_user")->orderBy("date_reviews", 'DESC')->limit(3)->get();
+        $reviews = Reviews::join("Users","Users.id","Reviews.id_user")->orderBy("date_review", 'DESC')->limit(3)->get();
         $i = 0;
         foreach($reviews as $d){
-            $date = explode(' ', $d->date_reviews);
+            $date = explode(' ', $d->date_review);
             $reviews[$i]->date = $date[0];
             $i++;
         }
-        $reviews_all = Reviews::join("Users","Users.id","Reviews.id_user")->orderBy("date_reviews", 'DESC')->limit(20)->offset(3)->get();
+        $reviews_all = Reviews::join("Users","Users.id","Reviews.id_user")->orderBy("date_review", 'DESC')->limit(20)->offset(3)->get();
         $i = 0;
         foreach($reviews_all as $d){
-            $date = explode(' ', $d->date_reviews);
+            $date = explode(' ', $d->date_review);
             $reviews_all[$i]->date = $date[0];
             $i++;
         }
