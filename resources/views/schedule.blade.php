@@ -1,4 +1,5 @@
 @extends('main')
+@section('title', 'Расписание')
 @section('content')
 
     <div id="cal" class="xl:p-40 xl:py-10 p-5">

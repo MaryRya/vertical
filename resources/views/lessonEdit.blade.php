@@ -1,5 +1,5 @@
 @extends('main')
-
+@section('title', 'Изменение')
 @section('content')
     @if (Auth::user()->id_role == 2)
         @foreach ($tableEdit as $table)

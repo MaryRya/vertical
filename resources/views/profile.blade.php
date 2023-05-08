@@ -1,4 +1,5 @@
 @extends('main')
+@section('title', 'Личный кабинет')
 @section('content')
     @guest
     @else

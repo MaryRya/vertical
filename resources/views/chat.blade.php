@@ -1,4 +1,5 @@
 @extends('main')
+@section('title', 'Чат')
 @section('content')
 
     <form class="w-full h-screen relative

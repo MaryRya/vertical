@@ -1,5 +1,5 @@
 @extends('main')
-
+@section('title', 'Вопросы')
 @section('content')
 
     <div class="items-center px-5 py-10 xl:px-72 md:px-20" style="min-height: 500px;">

@@ -1,4 +1,5 @@
 @extends('main')
+@section('title', 'Добавление тренера')
 @section('content')
     @if (Auth::user()->id_role == 2)
 

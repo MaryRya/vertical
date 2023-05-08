@@ -1,5 +1,5 @@
 @extends('main')
-
+@section('title', 'Занятия')
 @section('content')
     @if (Auth::user()->id_role == 2)
         <div class="items-center px-5 py-10 xl:px-72 md:px-20" style="min-height: 500px;">

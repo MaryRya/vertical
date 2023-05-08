@@ -1,5 +1,5 @@
 @extends('main')
-
+@section('title', 'Изменение данных')
 @section('content')
 
     <form class="flex flex-col md:px-40 px-6 mx-auto py-5" action="{{ route('profileEditAction') }}" method="POST" style="min-height: 530px" enctype="multipart/form-data">

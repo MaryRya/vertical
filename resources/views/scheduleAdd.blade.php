@@ -1,4 +1,5 @@
 @extends('main')
+@section('title', 'Добавление занятий')
 @section('content')
     <form class=" w-full
         w-100 h-100 px-2 xl:px-72 md:px-20 py-10" action="{{route('scheduleAction')}}" method="POST">

@@ -1,4 +1,5 @@
 @extends('main')
+@section('title', 'Изменнеие данных')
 @section('content')
     @if (Auth::user()->id_role == 2)
         <div class="w-full

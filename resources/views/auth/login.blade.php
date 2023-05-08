@@ -1,4 +1,5 @@
 @extends('main')
+@section('title', 'Авторизация')
 @section('content')
         <div class=" h-screen flex flex-col items-center px-6 bg-indigo-50 mx-auto py-10">
             <div class="w-full bg-white rounded-lg shadow-md  border border-gray-200 md:mt-0 sm:max-w-md  ">

@@ -1,5 +1,5 @@
 @extends('main')
-
+@section('title', 'Главная')
 @section('content')
     <body>
     <section class="bg-white ">
