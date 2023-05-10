@@ -6,7 +6,7 @@
         {{ csrf_field() }}
         <div class="space-y-12">
             <div class=" pb-12">
-                <a href="/lessonTable" type="button" class="  text-sm font-semibold leading-6 text-gray-600">Вернуться
+                <a href="/lessonTable" type="button" class="text-sm font-semibold leading-6 text-gray-600">Вернуться
                     назад</a>
                 <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                     <div class="sm:col-span-3">
@@ -14,7 +14,7 @@
                                class="block text-sm font-medium leading-6 text-gray-900">Название</label>
                         <div class="mt-2">
                             <input type="text" name="lesson_name" id="lesson_name" autocomplete="given-name"
-                                   class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 @error('lesson_name') is-invalid @enderror" value="{{ old('lesson_name') }}">
+                                   class="block shadow-sm w-full rounded-md border-0 py-1.5 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 @error('lesson_name') is-invalid @enderror" value="{{ old('lesson_name') }}">
                             @error('lesson_name')
                             <div class="alert alert-danger">{{ 'Заполните поле.' }}</div>
                             @enderror
@@ -79,7 +79,7 @@
                     <div class="col-span-full">
                         <label for="photo" class="block sm:text-sm text-xs font-medium leading-6 text-gray-900">Загрузить
                             изображение</label>
-                        <div class="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
+                        <div class="mt-2 flex justify-center rounded-lg border border-dashed shadow-sm border-gray-900/25 px-6 py-10">
                             <div class="text-center">
                                 <img src="/images/default.png" class="ml-auto mr-auto w-14 md:w-1/6"  id="img" />
                                 <div class="py-2 flex text-sm leading-6 text-gray-600">

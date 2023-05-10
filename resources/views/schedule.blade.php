@@ -2,8 +2,7 @@
 @section('title', 'Расписание')
 @section('content')
 
-    <div id="cal" class="xl:p-40 xl:py-10 p-5">
-
+    <div id="cal" class="xl:p-40 xl:py-5 p-5">
         <div id='calendar'></div>
     </div>
     <div id="medium-modal-1" tabindex="-2"
@@ -92,7 +91,7 @@
                             "_token": "{{ csrf_token() }}",
                             id:info.event.id,
                             date:info.event.startStr,
-                            id_schedule: info.event.groupId
+                            id_schedule: info.event.groupId,
                         },
                         success:function(response){
                             if(response !== 500){

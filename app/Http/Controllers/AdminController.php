@@ -139,8 +139,6 @@ class AdminController extends Controller
                 $extention = $file->getClientOriginalExtension();
                 $filename = time() . '.' . $extention;
                 $file->move('images/', $filename);
-               // $data["lesson_img"] = $filename;
-               // $data["id_direction"] = $direction_id[0];
                 Dance_lesson::where('id_lesson', $request->id_lesson)->update
                 ([
                     'lesson_name' => $data["lesson_name"],
@@ -284,7 +282,7 @@ class AdminController extends Controller
     public function ajaxCheck(Request $request){
         Records_clients::where('id_record', $request->id)->update
         ([
-            'attendance' => $request->ckeck_value,
+            'attendance' => $request->check_value,
         ]);
 
         return ['data'=>1];
@@ -307,7 +305,7 @@ class AdminController extends Controller
                 $data = Records_clients::join("Users", "Records_clients.id_user", "Users.id")
                     ->join("Schedule", "Schedule.id_schedule", "Records_clients.id_schedule")
                     ->join("Dance_lesson", "Dance_lesson.id_lesson", "Schedule.id_lesson")
-                    ->join("Hall", "Hall.id_hall", "Schedule.id_hall")
+                    ->join("Hall", "Hall.id_hall", "Schedule.id_hall")->orderBy("Schedule.date_lesson", 'DESC')
                     ->get();
             }
 

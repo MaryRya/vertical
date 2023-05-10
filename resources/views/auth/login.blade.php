@@ -33,13 +33,6 @@
                         <p class="text-sm font-light text-gray-500">
                             Нет аккаунта? <a href="/register" class="font-medium text-primary-600 hover:underline">Создайте его</a>
                         </p>
-                        <div>
-                        @if (Route::has('password.request'))
-                            <a class="btn btn-link text-sm font-medium text-primary-600 hover:underline" href="{{ route('password.request') }}">
-                                Забыли пароль?
-                            </a>
-                        @endif
-                        </div>
                         </div>
                     </form>
                 </div>

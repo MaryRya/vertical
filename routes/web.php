@@ -8,21 +8,6 @@ use App\Http\Controllers\ScheduleController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
-/*Route::get('/', function () {
-    return view('index');
-});*/
-
 Auth::routes();
 Route::get('/home', [IndexController::class, 'index']);
 Route::get('/', [IndexController::class, 'index']);
@@ -31,7 +16,7 @@ Route::get('/profile',  [IndexController::class, 'profile'])->name('profile');//
 Route::get('/profileEdit',  [IndexController::class, 'profileEdit'])->name('profileEdit');//изменение данных
 Route::post('/profileEditAction',  [IndexController::class, 'profileEditAction'])->name('profileEditAction');//кнопка изменения
 Route::post('/cancelLesson',  [IndexController::class, 'cancelLesson'])->name('cancelLesson');//отмена записи в лк
-Route::post('/reviewAction',  [IndexController::class, 'reviewAction'])->name('reviewAction');//отправка отзыва
+Route::post('/reviewAction',  [IndexController::class, 'reviewAction'])->name('reviewAction');//отправление отзыва
 
 Route::get('/adminIndex',  [AdminController::class, 'adminIndex'])->name('adminIndex');//админ панель
 Route::get('/lessonAdd',  [AdminController::class, 'lessonAdd'])->name('lessonAdd');//добавить занятие

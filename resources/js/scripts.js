@@ -48,13 +48,13 @@ function cardLesson(response){//записаться на занятие (кар
 }
 
 function terms_check(id, token){
-    let ckeckd = document.getElementById("check_"+id);
-    var ckeck_value = 0;
-    if (ckeckd.checked){
-        ckeck_value = 1;
+    let checked = document.getElementById("check_"+id);
+    var check_value = 0;
+    if (checked.checked){
+        check_value = 1;
     }
     else{
-        ckeck_value = 0;
+        check_value = 0;
     }
     $.ajax({
         url: "/ajax-check",
@@ -62,7 +62,7 @@ function terms_check(id, token){
         data:{
             "_token": token,
             id:id,
-            ckeck_value:ckeck_value
+            check_value:check_value
         },
         success:function(response){
             if(response !== 500){
