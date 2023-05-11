@@ -196,7 +196,7 @@ class ScheduleController extends Controller
     public function requestSentCoach($id_schedule){
         return Schedule::select('users.email', 'users.name', 'schedule.date_lesson', 'dance_lesson.lesson_name', 'time_lesson.start_time')->join('Time_lesson', 'Time_lesson.id_time_lesson', 'Schedule.id_time_lesson')->join('users','schedule.id_user', 'users.id')->join('dance_lesson', 'dance_lesson.id_lesson', 'schedule.id_lesson')->where("schedule.id_schedule", $id_schedule)->groupBy('users.email')->get();
     }
-    public function DeleteSchedule(Request $request){
+    public function deleteSchedule(Request $request){
         if($this->auth_admin()) {
             $users_tr = $this->requestSentCoach($request->id_schedule);
             foreach($users_tr as $users_t){

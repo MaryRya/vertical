@@ -4,7 +4,7 @@ $('#file-upload').change(function (event){
     $("#img").attr("src", tmp_url);
 });
 
-function check(){
+function checkReviews(){
     if(document.getElementById("all_reviews").style.display === "none"){
         document.getElementById("all_reviews").style.display = "block";
         document.getElementById("reviews_all").textContent = "Скрыть отзывы";
@@ -15,7 +15,7 @@ function check(){
     }
 }
 
-function cardLesson(response){//записаться на занятие (карточка занятия)
+function cardLessonInfo(response){//записаться на занятие (карточка занятия)
 
     if(response.data[0].hall_name !== undefined){
         document.getElementById("hall").value  = response.data[0].hall_name;
@@ -57,7 +57,7 @@ function terms_check(id, token){
         check_value = 0;
     }
     $.ajax({
-        url: "/ajax-check",
+        url: "/check",
         type:"POST",
         data:{
             "_token": token,
@@ -74,7 +74,7 @@ function terms_check(id, token){
     });
 }
 
-function checkDesc(){
+function checkDescription(){
     if(document.getElementById("desc_all_show").style.display === "none"){
         document.getElementById("desc_all_show").style.display = "block";
         document.getElementById("desc_all_hide").innerText = "Скрыть описание";
@@ -95,10 +95,10 @@ function ChatGetAjax2(response){
     return '<div class="mt-2 flex mb-10 justify-start ml-1"><input id="answer" readonly name="answer" class="block w-[600px] rounded-md bg-[#7179b9] text-white shadow-sm ring-1 sm:p-1.5 sm:text-sm sm:leading-6" value="'+response.answer+'"></div>';
 }
 
-function DeleteSchedule(token){
+function deleteScheduleAjax(token){
     var id_schedule = document.getElementById("id_schedule").value;
     $.ajax({
-        url: "/DeleteSchedule",
+        url: "/deleteSchedule",
         type:"POST",
         data:{
             "_token": token,

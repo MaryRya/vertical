@@ -47,11 +47,11 @@
                         @if (Auth::check())
                             @if (Auth::user()->id_role == 1)
                                 <button type="submit" id="sub_z" class="text-white bg-indigo-600 hover:bg-indigo-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center" >Записаться</button>
-                                <a href="#" onclick="checkDesc()"  id="desc_all_hide"
+                                <a href="#" onclick="checkDescription()"  id="desc_all_hide"
                                    class="text-white bg-indigo-600 hover:bg-indigo-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center" >Подробнее</a>
                             @endif
                             @if (Auth::user()->id_role == 2)
-                                <a style="cursor: pointer" onclick="DeleteSchedule('{{ csrf_token() }}')"
+                                <a style="cursor: pointer" onclick="deleteScheduleAjax('{{ csrf_token() }}')"
                                    class="text-white bg-indigo-600 hover:bg-indigo-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center" >Удалить</a>
                             @endif
                         @else
@@ -95,7 +95,7 @@
                         },
                         success:function(response){
                             if(response !== 500){
-                                cardLesson(response);
+                                cardLessonInfo(response);
                             }
                         },
                     });

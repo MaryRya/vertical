@@ -34,21 +34,21 @@ Route::post('/coachEditAction',  [AdminController::class, 'coachEditAction'])->n
 Route::get('/coachDelete/{id}',  [AdminController::class, 'coachDelete'])->name('coachDelete'); //удалить тренера
 Route::get('/attendance/export',  [AdminController::class, 'export'])->name('export'); //ексель
 Route::match(['get','post'],'/attendance',  [AdminController::class, 'attendance'])->name('attendance');//посещаемость
-Route::match(['get','post'],'/ajax-check',  [AdminController::class, 'ajaxCheck'])->name('ajaxCheck');//присутсвие
+Route::match(['get','post'],'/check',  [AdminController::class, 'check'])->name('check');//присутсвие
 
 Route::get('/schedule',  [ScheduleController::class, 'schedule'])->name('schedule');//расписание
-Route::post('/cardLesson',  [ScheduleController::class, 'cardLesson'])->name('cardLesson');//запрос данных на формирование занятий
+Route::post('/cardLesson',  [ScheduleController::class, 'cardLesson'])->name('cardLesson');
 Route::post('/enrollLesson',  [ScheduleController::class, 'enrollLesson'])->name('enrollLesson');//записаться на занятие
 Route::get('/scheduleAdd',  [ScheduleController::class, 'scheduleAdd'])->name('scheduleAdd');//добавление расписания
-Route::post('/scheduleAction',  [ScheduleController::class, 'scheduleAction'])->name('scheduleAction');//кнопка добавления расп
+Route::post('/scheduleAction',  [ScheduleController::class, 'scheduleAction'])->name('scheduleAction');//кнопка добавления расписания
 Route::post('/scheduleChange',  [ScheduleController::class, 'scheduleChange'])->name('scheduleChange'); //перемещение занятия (админ)
-Route::post('/DeleteSchedule',  [ScheduleController::class, 'DeleteSchedule'])->name('DeleteSchedule'); //удаление
+Route::post('/deleteSchedule',  [ScheduleController::class, 'deleteSchedule'])->name('deleteSchedule'); //удаление
 Route::get('/setEmail',  [ScheduleController::class, 'setEmail'])->name('setEmail');//оправление сообщения
 Route::get('/requestSent',  [ScheduleController::class, 'requestSent'])->name('requestSent');//запрос по пользователям
 Route::get('/requestSentCoach',  [ScheduleController::class, 'requestSentCoach'])->name('requestSentCoach');//запрос по тренерам
 
 Route::get('/chatTable',  [ChatController::class, 'chatTable'])->name('chatTable');//ответить пользователю (админ)
 Route::match(['get','post'],'/chat',  [ChatController::class, 'chat'])->name('chat');//форма чата
-Route::post('/chatAjax',  [ChatController::class, 'chatAjax'])->name('chatAjax');//отправка данных в чат
+Route::post('/chatAjax',  [ChatController::class, 'chatAjax'])->name('chatAjax');//данные чата
 
 

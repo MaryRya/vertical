@@ -57,13 +57,9 @@ class IndexController extends Controller
                 ->join("Users", "Users.id", "Schedule.id_user")
                 ->where("Records_clients.id_user", auth()->user()->id)
                 ->get();
-
             return view('profile', ['data' =>  $data, 'count' => $count, 'datenow'=>date("Y-m-d")]);
-
         }
-
     }
-
     public function cancelLesson(Request $request){
         if(auth()->check()){
             $count_places = Schedule::select("count_places")->where('id_schedule', $request->id_schedule)->get();
@@ -84,9 +80,7 @@ class IndexController extends Controller
                     'phone' => 'regex:/(^[0-9 ]+$)+/',
                     'coach_description' => 'required|max:255',
                 ]);
-
                 if ($request->hasfile('file')) {
-
                     $del = User::where("id", auth()->user()->id)->select("photo")->get();
                     if (file_exists("images/coaches/" . $del[0]->photo)) {
                         unlink("images/coaches/" . $del[0]->photo);
@@ -98,7 +92,6 @@ class IndexController extends Controller
                     $data["photo"] = $filename;
 
                 }
-
             }
             else{
                 $data = $request->validate([
@@ -132,7 +125,6 @@ class IndexController extends Controller
         return redirect("/files/agreement1.pdf");
     }
 
-
     public function index()
     {
         if(isset(auth()->user()->id_role) && (auth()->user()->id_role == 3)) return redirect('/schedule');
@@ -162,7 +154,4 @@ class IndexController extends Controller
         }
         return view('index', ['dance' => $dance, 'users'=>$users, 'reviews'=>$reviews, 'reviews_all'=>$reviews_all, 'count'=>$count??null]);
     }
-
-
-
 }
