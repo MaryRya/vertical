@@ -2,11 +2,11 @@
 @section('title', 'Личный кабинет')
 @section('content')
         <form id="profile" class="flex flex-col md:px-40 bg-[#f9f9fa] px-6 mx-auto py-8" >
-            <div  class="w-full bg-white rounded-lg bg-[#f9f9fa] md:mt-0 sm:max-w-md  ">
+            <div  class="w-full  rounded-lg bg-[#f9f9fa] md:mt-0 sm:max-w-md ">
                 <h1 class="text-xl font-bold mb-5 leading-tight tracking-tight text-gray-900 md:text-2xl ">
                     Личные данные
                 </h1>
-                <div class="space-y-4 md:space-y-6">
+                <div class="space-y-4 md:space-y-6 bg-[#f9f9fa]">
                     <div>
                         <label for="name" class="block mb-2 text-sm font-medium text-gray-900 ">Имя, Фамилия</label>
                         <input readonly type="text"  name="name" id="username" class="bg-gray-50 border-2 border-gray-300 text-gray-900 sm:text-sm rounded-lg  block w-full p-2.5" value="{{ Auth::user()->name }}">

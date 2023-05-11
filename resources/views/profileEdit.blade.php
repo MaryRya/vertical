@@ -2,9 +2,9 @@
 @section('title', 'Изменение данных')
 @section('content')
 
-    <form class="flex flex-col md:px-40 px-6 mx-auto py-5" action="{{ route('profileEditAction') }}" method="POST" style="min-height: 530px" enctype="multipart/form-data">
+    <form class="flex flex-col md:px-40 px-6 mx-auto py-8 bg-[#f9f9fa]" action="{{ route('profileEditAction') }}" method="POST" style="min-height: 530px" enctype="multipart/form-data">
         {{ csrf_field() }}
-        <div class="w-full bg-white rounded-lg  md:mt-0 sm:max-w-md  ">
+        <div class="w-full rounded-lg  md:mt-0 sm:max-w-md ">
             <h1 class="text-xl font-bold mb-5 leading-tight tracking-tight text-gray-900 md:text-2xl ">
                 Личные данные
             </h1>
