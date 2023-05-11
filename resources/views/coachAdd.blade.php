@@ -3,7 +3,7 @@
 @section('content')
     @if (Auth::user()->id_role == 2)
 
-        <div class="w-full
+        <div class="w-full bg-[#f9f9fa]
         w-100 h-100 px-2 xl:px-72 md:px-20 py-10">
             <div class="space-y-12 ">
                 <div class=" pb-12">

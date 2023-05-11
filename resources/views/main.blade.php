@@ -19,7 +19,7 @@
 </head>
 <header>
     <div>
-        <nav class="bg-white w-full
+        <nav class="bg-[#e0e0f5] w-full
         w-100 h-100 px-2 md:px-4 py-2.5">
             <div class=" flex flex-wrap items-center justify-between max-w-screen-xl mx-auto">
                 <a href="/" class="flex items-center">
@@ -31,14 +31,14 @@
                     @guest
                         @if (Route::has('login'))
                             <div class="">
-                            <a href="/login" class="text-white bg-indigo-600 hover:bg-indigo-800 focus:ring-4 focus:ring-blue-100 font-medium rounded-lg md:text-sm text-xs px-4 py-2 md:px-6 md:py-2 mr-1 md:mr-2 focus:outline-none ml-4"> Вход</a>
+                            <a href="/login" class="text-white bg-indigo-500 hover:bg-indigo-800 focus:ring-4 focus:ring-blue-100 font-medium rounded-lg md:text-sm text-xs px-4 py-2 md:px-6 md:py-2 mr-1 md:mr-2 focus:outline-none ml-4"> Вход</a>
                         @endif
                         @if (Route::has('register'))
-                            <a href="/register" class="text-gray-800  hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg sm:text-sm text-xs px-4 py-2 md:px-5 px-1 md:py-2.5 mr-1 md:mr-2">Регистрация</a>
+                            <a href="/register" class="text-gray-800  focus:ring-4 focus:ring-gray-300 font-medium rounded-lg sm:text-sm text-xs px-4 py-2 md:px-5 px-1 md:py-2.5 mr-1 md:mr-2">Регистрация</a>
                             </div>
                         @endif
                     @else
-                        <a href="/profile" class="text-gray-800 hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg sm:text-sm text-xs px-1 py-1 md:px-5 px-1 ml-5 md:py-2.5 mr-1 md:mr-2 ">Личный кабинет</a>
+                        <a href="/profile" class="text-gray-800 hover:bg-indigo-500 hover:text-white focus:ring-4 focus:ring-gray-300 font-medium rounded-lg sm:text-sm text-xs px-1 py-1 md:px-5 px-1 ml-5 md:py-2.5 mr-1 md:mr-2 ">Личный кабинет</a>
                         <a href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();" class=" text-gray-800 ml-6 md:mr-5 mx-2 focus:ring-gray-300 font-medium rounded-lg sm:text-sm text-xs ">Выход</a>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
@@ -52,8 +52,6 @@
                 </div>
 
                 <div id="mega-menu-icons" class=" items-center justify-between hidden w-full md:flex md:w-auto md:order-1">
-
-
                     <ul class="flex flex-col text-sm font-bold md:flex-row md:space-x-8 md:mt-0">
                         @guest
                             <li>

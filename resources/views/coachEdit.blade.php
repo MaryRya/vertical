@@ -3,7 +3,7 @@
 @section('content')
     @if (Auth::user()->id_role == 2)
         <div class="w-full
-        w-100 h-100 px-2 xl:px-72 md:px-20 py-10">
+        w-100 h-100 px-2 xl:px-72 md:px-20 py-10 bg-[#f9f9fa]">
             <div class="space-y-12">
                 <div class="pb-12">
                     <a href="/coachTable" type="button" class=" mb-2 sm:text-sm text-xs font-semibold leading-6 text-gray-600 hover:text-black">Вернуться назад</a>

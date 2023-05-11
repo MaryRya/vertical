@@ -1,10 +1,10 @@
 @extends('main')
 @section('title', 'Главная')
 @section('content')
-    <body>
-    <section class="bg-white ">
+    <body class="bg-[#f9f9fa]">
+    <section class="bg-[#f9f9fa] ">
         <div class="gap-16 items-center px-4 mx-auto max-w-screen-xl lg:grid lg:grid-cols-2 py-6">
-            <div class="font-light text-gray-500 sm:text-lg ">
+            <div class="font-light text-gray-700 sm:text-lg ">
                 <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 ">Ощути свободу движений</h2>
                 <p class="mb-4">Vertical - команда тех, кто любит движение и драйв, мы помогаем создавать красивые тела и выражать эмоции через танцевальные и гимнастические направления.
                     Вернем вам стройность и гибкость, силу и тонус, научим танцевать и трюкачить в том стиле, который вы выберете.
@@ -29,7 +29,7 @@
 
         <div id="lesson" class="flex flex-wrap  gap-5 justify-center p-5">
             @foreach($dan->mass as $d)
-                <div class="max-w-xs xl:max-w-sm h-[550px] bg-white border-2 border-indigo-200 border-b-teal-100 border-t-teal-100 rounded-lg ">
+                <div class="max-w-xs xl:max-w-sm h-[550px] bg-white border-2 border-indigo-200 border-b-teal-100 border-t-teal-100 rounded-lg shadow-md">
                     <img class="rounded-t-lg w-full h-1/2" src="images/{{$d->lesson_img}}" alt=""/>
                     <div class=" relative  p-5 h-2/4">
                         <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 ">{{$d->lesson_name}}</h5>
@@ -91,27 +91,27 @@
     @endforeach
 
 
-    <section id="team" class="bg-white">
+    <section id="team" >
         <div class="py-8 px-6 mx-auto max-w-screen-xl lg:py-16 lg:px-6 ">
             <div class="mx-auto max-w-screen-sm text-center mb-8 lg:mb-16">
                 <h2 class="mb-4 text-3xl md:text-4xl tracking-tight font-extrabold text-gray-900">Наша команда</h2>
-                <p class="font-light text-gray-500 lg:mb-16 sm:text-xl ">Можно работать и год, и два, и много-много лет,
+                <p class="font-light text-gray-700 lg:mb-16 sm:text-xl ">Можно работать и год, и два, и много-много лет,
                     а тренером так и не стать. Однако наши тренеры реализовали себя в профессиональном плане и нашли
                     свое призвание, по велению свыше!
                 </p>
             </div>
             <div class="grid gap-8 mb-2 md:grid-cols-2">
                 @foreach ($users as $user)
-                    <div class="items-center bg-[#f8f8e9] rounded-lg shadow-xl shadow-[#e0e0f5] sm:flex ">
+                    <div class="items-center bg-[#dad9fa] rounded-lg shadow-xl shadow-[#e0e0f5] sm:flex ">
                         <img class=" md:h-full sm:w-1/2 rounded-lg sm:rounded-none sm:rounded-l-lg"
                              src="images/coaches/{{$user->photo}}"
                              alt="{{$user->name}}">
                         <div class="p-5">
-                            <h3 class="text-xl font-bold tracking-tight text-gray-900 ">
+                            <h3 class="text-xl font-bold tracking-tight text-black ">
                                 <a>{{$user->name}}</a>
                             </h3>
                             <span class="text-gray-500 ">Тренер</span>
-                            <p class="mt-3 mb-4 font-light text-gray-500 ">{{$user->coach_description}}</p>
+                            <p class="mt-3 mb-4 font-light text-gray-900 ">{{$user->coach_description}}</p>
                         </div>
                     </div>
                 @endforeach
@@ -124,7 +124,7 @@
             <p class="text-3xl md:text-4xl tracking-tight font-extrabold text-gray-900">Наши преимущества</p>
         </div>
     </div>
-    <div class="font-light text-gray-500 sm:text-xl mx-auto mx-14 pb-10 pt-5 px-5">
+    <div class="font-light text-gray-700 sm:text-xl mx-auto mx-14 pb-10 pt-5 px-5">
         <div class="md:flex md:justify-between">
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-8 xl:grid-cols-4">
                 <a>❤ Современные, просторные и уютные залы, оборудованные всем необходимым для эффективных занятий.</a>
@@ -140,7 +140,7 @@
             <p class="px-4 text-xl sm:text-2xl font-semibold  text-center">Отзывы</p>
         </div>
     </div>
-    <section id="reviews" class="bg-white py-8 lg:py-5">
+    <section id="reviews" class="bg-[#f4f7f5] py-8 lg:py-5">
         <div class="max-w-2xl mx-auto px-4">
             <div class="flex justify-between items-center mb-6">
             </div>
@@ -150,7 +150,7 @@
                         <form class="mb-6" action="{{ route('reviewAction') }}" method="POST">
                             @csrf
                             @endguest
-                            <div class="py-2 px-4 mb-4 bg-white rounded-lg rounded-t-lg border-4 border-indigo-200 border-b-teal-100 border-t-teal-100 ">
+                            <div class="py-2 px-4 mb-4 bg-white rounded-lg rounded-t-lg border-4 border-indigo-300 border-b-teal-200 border-t-teal-100 ">
                                <textarea id="comment" rows="6"
                                          class="px-0 w-full text-sm text-gray-900 border-0  focus:ring-0 focus:outline-none"
                                          placeholder="Напишите отзыв" name="text" required></textarea>
@@ -187,18 +187,17 @@
                             </div>
                         </div>
                         @foreach($reviews as $review)
-                            <article class="p-6 mb-6 text-base bg-white border border-2 border-indigo-200 border-r-teal-100 rounded-lg ">
+                            <article class="p-6 mb-6 text-base bg-white border-2 border-indigo-300 border-r-teal-200 rounded-lg ">
                                 <div class="flex justify-between items-center mb-2">
                                     <div class="flex items-center">
                                         <p class="inline-flex items-center mr-3 text-sm text-gray-900 ">{{$review->name}}</p>
                                         <p class="text-sm text-gray-600 ">
-                                            <time datetime="2022-02-08"
-                                                  title="February 8th, 2022">{{$review->date}}
+                                            <time datetime="2022-02-08" class="font-light">{{$review->date}}
                                             </time>
                                         </p>
                                     </div>
                                 </div>
-                                <p class="text-gray-500 ">
+                                <p class="text-gray-800 ">
                                     {{$review->text}}
                                 </p>
                             </article>
@@ -224,7 +223,7 @@
                                             </p>
                                         </div>
                                     </div>
-                                    <p class="text-gray-500 ">
+                                    <p class="text-gray-800 text-md ">
                                         {{$review->text}}
                                     </p>
                                 </article>

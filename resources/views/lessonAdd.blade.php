@@ -2,7 +2,7 @@
 @section('title', 'Добавление')
 @section('content')
     <form class=" w-full
-        w-100 h-100 px-2 xl:px-72 md:px-20 py-10" action="{{route('lessonAddAction')}}" method="POST" enctype="multipart/form-data">
+        w-100 h-100 px-2 xl:px-72 md:px-20 py-10 bg-[#f9f9fa]" action="{{route('lessonAddAction')}}" method="POST" enctype="multipart/form-data">
         {{ csrf_field() }}
         <div class="space-y-12">
             <div class=" pb-12">
@@ -24,7 +24,7 @@
                         <label class="block text-sm font-medium leading-6 text-gray-900">Направление</label>
                         <div class="mt-2">
                             <select name="direction" autocomplete="country-name"
-                                    class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
+                                    class="block w-full rounded-md border-0  py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
                                 @foreach ($directions as $d)
                                     <option value="{{$d->id_direction}}">{{$d->name_direction}}</option>
                                 @endforeach

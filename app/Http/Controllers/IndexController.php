@@ -44,7 +44,7 @@ class IndexController extends Controller
 
     public function profile()
     {
-        if(isset(auth()->user()->name)){
+        if(auth()->check()){
             $chat_views = Chat::where([['id_user', '=', auth()->user()->id], ['view', '=', 0]]);
             $count = $chat_views->count();
             $data = Dance_lesson::

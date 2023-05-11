@@ -58,9 +58,11 @@ input::-webkit-inner-spin-button {
 }
 .fc-timegrid-event-harness {
 display:inline-flex;
-
 }
 
+.fc-header-toolbar{
+    background: #f9f9fa;
+}
 #cal{
     height: 1050px;
 }

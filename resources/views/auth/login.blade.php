@@ -1,7 +1,7 @@
 @extends('main')
 @section('title', 'Авторизация')
 @section('content')
-        <div class=" h-screen flex flex-col items-center px-6 bg-indigo-50 mx-auto py-10">
+        <div class=" h-screen flex flex-col items-center px-6 bg-[#f4f7f5] mx-auto py-10">
             <div class="w-full bg-white rounded-lg shadow-md  border border-gray-200 md:mt-0 sm:max-w-md  ">
                 <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
                     <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl ">

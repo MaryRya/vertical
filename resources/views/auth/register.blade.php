@@ -1,7 +1,7 @@
 @extends('main')
 @section('title', 'Регистрация')
 @section('content')
-    <div class="flex  flex-col bg-indigo-50 items-center px-5 mx-auto py-5">
+    <div class="flex flex-col bg-[#f4f7f5] items-center px-5 mx-auto py-5">
             <div class="w-full bg-white rounded-lg shadow-md border border-gray-200 md:mt-0 sm:max-w-md xl:p-0 ">
                 <div class="p-6 space-y-4 md:space-y-6 ">
                     <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">

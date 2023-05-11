@@ -2,7 +2,7 @@
 @section('title', 'Чат')
 @section('content')
 
-    <form class="w-full h-screen relative
+    <form class="w-full h-screen relative bg-[#f9f9fa]
         w-100 h-100 px-2 xl:px-72 md:px-20 pt-10" onsubmit="return false">
         <div class="space-y-15">
             <div class=" pb-5">

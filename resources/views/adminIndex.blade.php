@@ -2,7 +2,7 @@
 @section('title', 'АдминПанель')
 @section('content')
     @if (Auth::user()->id_role == 2)
-        <div class="items-center min-h-full px-5 py-10 xl:px-72 md:px-20">
+        <div class="items-center min-h-full px-5 py-10 xl:px-72 md:px-20 bg-[#f9f9fa]">
             <div class="w-full max-w-screen-xl py-5 mx-auto ">
                 <!-- Start coding here -->
                 <div class="relative bg-indigo-50 overflow-hidden bg-white border-2 border-indigo-200 border-r-teal-100 shadow-md shadow-indigo-200 rounded-lg">

@@ -4,7 +4,7 @@
     @if (Auth::user()->id_role == 2)
         @foreach ($tableEdit as $table)
             <form class=" w-full
-        w-100 h-100 px-2 xl:px-72 md:px-20 py-10" action="{{ route('lessonEditAction') }}" method="POST" enctype="multipart/form-data">
+        w-100 h-100 px-2 xl:px-72 md:px-20 py-10 bg-[#f9f9fa]" action="{{ route('lessonEditAction') }}" method="POST" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <input type="hidden" name="id_lesson" value="{{$table->id_lesson}}">
                 <div class="space-y-12">

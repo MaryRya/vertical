@@ -2,8 +2,8 @@
 @section('title', 'Расписание')
 @section('content')
 
-    <div id="cal" class="xl:p-40 xl:py-5 p-5">
-        <div id='calendar'></div>
+    <div id="cal" class="xl:p-40 xl:py-5 p-5 bg-[#f9f9fa]">
+        <div id='calendar' class="bg-white"></div>
     </div>
     <div id="medium-modal-1" tabindex="-2"
          class="fixed top-0 left-0 right-0 z-50 hidden  p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] md:h-full">
