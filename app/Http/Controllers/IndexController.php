@@ -59,6 +59,7 @@ class IndexController extends Controller
                 ->get();
             return view('profile', ['data' =>  $data, 'count' => $count, 'datenow'=>date("Y-m-d")]);
         }
+        else return redirect('/');
     }
     public function cancelLesson(Request $request){
         if(auth()->check()){

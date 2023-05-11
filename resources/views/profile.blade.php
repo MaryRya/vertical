@@ -1,8 +1,6 @@
 @extends('main')
 @section('title', 'Личный кабинет')
 @section('content')
-    @guest
-    @else
         <form id="profile" class="flex flex-col md:px-40 px-6 mx-auto py-5" >
             <div  class="w-full bg-white rounded-lg  md:mt-0 sm:max-w-md  ">
                 <h1 class="text-xl font-bold mb-5 leading-tight tracking-tight text-gray-900 md:text-2xl ">
@@ -122,5 +120,4 @@
                 </div>
             </div>
         @endif
-    @endguest
 @endsection
