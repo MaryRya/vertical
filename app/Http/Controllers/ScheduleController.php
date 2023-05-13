@@ -60,7 +60,7 @@ class ScheduleController extends Controller
             $arr[$i]["title"] = $d->lesson_name;
             $arr[$i]["id"] = $d->id_lesson;
             $arr[$i]["groupId"] = $d->id_schedule;
-            if($d->date_lesson < date("Y-m-d")){
+            if($d->date_lesson." ".$d->start_time < date("Y-m-d H:i:s")){
                 $arr[$i]["backgroundColor"] = "#4f4e52";
                 $arr[$i]["borderColor"] = "#4f4e52";
             }$i++;

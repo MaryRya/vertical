@@ -37,7 +37,7 @@
                                 <label for="file-upload"
                                        class="relative cursor-pointer rounded-md ml-auto mr-auto bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500">
                                     <span>Выбрать изображение</span>
-                                    <input id="file-upload" name="file" type="file" class="sr-only coach" required>
+                                    <input id="file-upload" name="file" type="file" class="sr-only coach">
                                 </label>
                             </div>
                             <p class="mt-2 text-xs leading-5 text-gray-600">PNG, JPG, JPEG</p>
@@ -48,7 +48,7 @@
                     <div class="mt-2">
                         <label  for="aboutCoach" class="block text-sm font-medium leading-6 text-gray-900">Описание</label>
                         <div class="mt-2">
-                            <textarea type="text" id="aboutCoach" name="coach_description" class="h-24 border border-gray-300 text-gray-900 sm:text-sm rounded-lg  block w-full " required >{{ Auth::user()->coach_description}} </textarea>
+                            <textarea type="text" id="aboutCoach" name="coach_description" class="h-24 border border-gray-300 text-gray-900 sm:text-sm rounded-lg bg-[#f9f9fa] block w-full " required >{{ Auth::user()->coach_description}} </textarea>
                         </div>
                     </div>
 

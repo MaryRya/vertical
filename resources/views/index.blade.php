@@ -93,9 +93,9 @@
 
     <section id="team" >
         <div class="py-8 px-6 mx-auto max-w-screen-xl lg:py-16 lg:px-6 ">
-            <div class="mx-auto max-w-screen-sm text-center mb-8 lg:mb-16">
+            <div class="mx-auto max-w-screen-sm text-center mb-8 ">
                 <h2 class="mb-4 text-3xl md:text-4xl tracking-tight font-extrabold text-gray-900">Наша команда</h2>
-                <p class="font-light text-gray-700 lg:mb-16 sm:text-xl ">Можно работать и год, и два, и много-много лет,
+                <p class="font-light text-gray-700 lg:mb-8 sm:text-xl ">Можно работать и год, и два, и много-много лет,
                     а тренером так и не стать. Однако наши тренеры реализовали себя в профессиональном плане и нашли
                     свое призвание, по велению свыше!
                 </p>
@@ -140,7 +140,7 @@
             <p class="px-4 text-xl sm:text-2xl font-semibold  text-center">Отзывы</p>
         </div>
     </div>
-    <section id="reviews" class="bg-[#f4f7f5] py-8 lg:py-5">
+    <section id="reviews" class=" py-8 lg:py-5">
         <div class="max-w-2xl mx-auto px-4">
             <div class="flex justify-between items-center mb-6">
             </div>

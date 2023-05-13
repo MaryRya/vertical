@@ -26,7 +26,7 @@
                         <input type="hidden" name="id_user" id="id_user">
                         <div class="pb-2">
                             <span class="font-medium sm:text-base text-sm">Стоимость: </span>
-                            <input type="text" id="price" readonly class="bg-indigo-50 sm:text-base text-sm font-medium border-none w-14 p-1">руб. <br>
+                            <input type="text" id="price" readonly class="bg-indigo-50 sm:text-base text-sm font-medium border-none w-10 p-1">руб. <br>
                             <input type="hidden" name="id_time" id="id_time" value="">
                             <span class="font-medium sm:text-base text-sm">Время занятий: </span>
                             <input type="text" id="time" readonly class="bg-indigo-50 sm:text-base text-sm font-medium border-none w-40 p-1"><br>
@@ -109,7 +109,7 @@
                     list:'список'},
                 timeZone: 'UTC',
                 slotMinTime: "10:00:00",
-                slotMaxTime: "22:00:00",
+                slotMaxTime: "21:00:00",
                 slotDuration: '01:00',
                 firstDay: 1,
                 stickyHeaderDates:true,
