@@ -59,56 +59,57 @@
                             <table class="min-w-full ">
                                 <thead class="bg-gray-300 border-b ">
                                 <tr>
-                                    <th scope="col" class="rounded-l-md bg-indigo-400 text-white text-md font-bold text-gray-900 px-6 py-4 text-left">
-                                    </th>
-                                    <th scope="col" class=" bg-indigo-400 text-white text-md font-bold text-gray-900 px-6 py-4 text-left">
+                                    <th scope="col" class="text-center rounded-l-md bg-indigo-400 text-white text-md font-bold text-gray-900 px-6 py-4 text-left">
                                         Занятие
                                     </th>
-                                    <th scope="col" class="bg-indigo-400 text-white text-md font-bold text-gray-900 px-6 py-4 text-left">
+                                    <th scope="col" class="text-center bg-indigo-400 text-white text-md font-bold text-gray-900 px-6 py-4 text-left">
                                         Дата
                                     </th>
-                                    <th scope="col" class="bg-indigo-400 text-white text-md font-bold text-gray-900 px-6 py-4 text-left">
+                                    <th scope="col" class="text-center bg-indigo-400 text-white text-md font-bold text-gray-900 px-6 py-4 text-left">
                                         Время
                                     </th>
-                                    <th scope="col" class="bg-indigo-400 text-white text-md font-bold text-gray-900 px-6 py-4 text-left">
+                                    <th scope="col" class="text-center bg-indigo-400 text-white text-md font-bold text-gray-900 px-6 py-4 text-left">
                                         Зал
                                     </th>
-                                    <th scope="col" class="bg-indigo-400 rounded-r-md text-white text-md font-bold text-gray-900 px-6 py-4 text-left">
+                                    <th scope="col" class="text-center bg-indigo-400 text-white text-md font-bold text-gray-900 px-6 py-4 text-left">
                                         Тренер
+                                    </th>
+                                    <th scope="col" class="text-center bg-indigo-400 rounded-r-md text-white text-md font-bold text-gray-900 px-6 py-4 text-left">
                                     </th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 @foreach ($data as $d)
                                     <tr class="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100">
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"></td>
-                                        <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                        <td class="text-center text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                                             {{$d->lesson_name}}
                                         </td>
-                                        <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                        <td class="text-center text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                                             {{$d->date_lesson}}
                                         </td>
-                                        <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                        <td class="text-center text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                                             {{mb_substr($d->start_time,0, 5)}} - {{mb_substr($d->end_time,0, 5)}}
                                         </td>
-                                        <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                        <td class="text-center text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                                             {{$d->hall_name}}
                                         </td>
-                                        <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                        <td class="text-center text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                                             {{$d->name}}
                                         </td>
-                                            <form method="POST" action="{{ route('cancelLesson') }}">
+                                        <td>
+                                        <form method="POST" action="{{ route('cancelLesson') }}">
                                                 {{ csrf_field() }}
                                                 <input type="hidden" name="id_record" value="{{$d->id_record}}">
                                                 <input type="hidden" name="id_schedule" value="{{$d->id_schedule}}">
                                                 @if ($d->date_lesson < $datenow)
                                                 @else
                                                     <button type="submit"
-                                                            class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                                                            class=" rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
                                                         Отменить
                                                     </button>
                                                 @endif
                                             </form>
+                                        </td>
                                     </tr>
                                 @endforeach
                                 </tbody>

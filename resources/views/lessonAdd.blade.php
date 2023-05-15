@@ -77,11 +77,11 @@
                         </div>
                     </div>
                     <div class="col-span-full">
-                        <label for="photo" class="block sm:text-sm text-xs font-medium leading-6 text-gray-900">Загрузить
+                        <label for="photo" class="block text-sm  font-medium leading-6 text-gray-900">Загрузить
                             изображение</label>
                         <div class="mt-2 flex justify-center rounded-lg border border-dashed shadow-sm border-gray-900/25 px-6 py-10">
                             <div class="text-center">
-                                <img src="/images/default.png" class="ml-auto mr-auto w-14 md:w-1/6"  id="img" />
+                                <img src="/images/default.png" class="ml-auto mr-auto w-32 md:w-1/6"  id="img" />
                                 <div class="py-2 flex text-sm leading-6 text-gray-600">
                                     <label for="file-upload"
                                            class="relative cursor-pointer rounded-md bg-white ml-auto mr-auto font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500">

@@ -60,9 +60,28 @@ class ScheduleController extends Controller
             $arr[$i]["title"] = $d->lesson_name;
             $arr[$i]["id"] = $d->id_lesson;
             $arr[$i]["groupId"] = $d->id_schedule;
+            if($d->id_direction == 1){
+                $arr[$i]["backgroundColor"] = "#CF6A93";
+                $arr[$i]["borderColor"] = "#CF6A93";
+            }
+            if($d->id_direction == 2){
+                $arr[$i]["backgroundColor"] = "#6573B2";
+                $arr[$i]["borderColor"] = "#6573B2";
+            }
+            if($d->id_direction == 3){
+                $arr[$i]["backgroundColor"] = "#5AB994";
+                $arr[$i]["borderColor"] = "#5AB994";
+            }
             if($d->date_lesson." ".$d->start_time < date("Y-m-d H:i:s")){
-                $arr[$i]["backgroundColor"] = "#4f4e52";
-                $arr[$i]["borderColor"] = "#4f4e52";
+                if($d->id_direction == 1){
+                    $arr[$i]["backgroundColor"] = "#9B5571";
+                }
+                if($d->id_direction == 2){
+                    $arr[$i]["backgroundColor"] = "#61698F";
+                }
+                if($d->id_direction == 3){
+                    $arr[$i]["backgroundColor"] = "#4F7365";
+                }
             }$i++;
         }
         return view('schedule', ['data'=>json_encode($arr), 'les'=>$les, 'event'=>0], ['count' => $count]);

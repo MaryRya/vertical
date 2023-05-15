@@ -2,7 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
-
+#answer{
+    height: auto;
+    width: auto;
+}
 .fc-today-button
 {
     background-color: #3e3eb9 !important;
@@ -27,7 +30,7 @@
 }
 
 #profile{
-    min-height: 500px;
+    min-height: 540px;
 }
 
 input::-webkit-outer-spin-button,

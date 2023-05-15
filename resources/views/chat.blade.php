@@ -9,9 +9,9 @@
                 <a href="/adminIndex" type="button" class="sm:text-sm text-xs font-semibold leading-6 text-gray-600">Вернуться
                     назад</a>
                 @if (Auth::user()->id_role == 1)
-                    <h2 class="text-md px-5 py-2 text-center font-monospace leading-tight tracking-tight text-gray-900 md:text-xl  text-black">Здравствуйте! На какой вопрос Вы хотите получить ответ?</h2>
+                    <h2 class="text-md px-5 py-2 text-center font-monospace leading-tight tracking-tight text-gray-900 md:text-xl  text-black">Здравствуйте! На какой вопрос хотите получить ответ?</h2>
                 @endif
-                <div id="res" class="h-[300px] xl:h-[400px] "></div>
+                <div id="res" class="h-[300px] xl:h-[400px] mt-10"></div>
             </div>
             <div id="textsent" class="grid gap-x-4 gap-y-2 grid-cols-6 md:ml-10 flex bottom-0 ">
                 <div id="chatspan" class=" pt-5 col-span-5">

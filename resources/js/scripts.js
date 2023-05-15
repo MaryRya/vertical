@@ -15,7 +15,7 @@ function checkReviews(){
     }
 }
 
-function cardLessonInfo(response){//записаться на занятие (карточка занятия)
+function cardLessonInfo(response){//карточка занятия
 
     if(response.data[0].hall_name !== undefined){
         document.getElementById("hall").value  = response.data[0].hall_name;
@@ -89,10 +89,10 @@ if(document.getElementById("date_shd") != null)
 
 
 function ChatGetAjax1(response){
-    return '<div class="mt-2 mb-10 flex justify-end mr-1"><input id="answer" readonly name="answer" class="block w-[600px]  rounded-md bg-indigo-100 text-gray-900 shadow-sm  sm:p-1.5 sm:text-sm sm:leading-6" value="'+response.question+'"></div>';
+    return '<div class="mt-2 mb-8 flex justify-end mr-3"><div  id="answer" readonly class="block max-w-[600px] rounded-md bg-indigo-100 text-gray-900 shadow-sm  sm:p-2 sm:text-sm sm:leading-6">'+response.question+'</div></div>';
 }
 function ChatGetAjax2(response){
-    return '<div class="mt-2 flex mb-10 justify-start ml-1"><input id="answer" readonly name="answer" class="block w-[600px] rounded-md bg-[#7179b9] text-white shadow-sm ring-1 sm:p-1.5 sm:text-sm sm:leading-6" value="'+response.answer+'"></div>';
+    return '<div class="mt-2 flex mb-8 justify-start ml-3"><div  id="answer" readonly class="block max-w-[600px] rounded-md bg-[#7179b9] text-white shadow-sm ring-1 sm:p-2 sm:text-sm sm:leading-6">'+response.answer+'</div></div>';
 }
 
 function deleteScheduleAjax(token){

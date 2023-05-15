@@ -60,7 +60,7 @@ class AdminController extends Controller
                 'about_all' => 'required|max:400',
                 'things' => 'required|max:100',
                 'price' => 'required|numeric',
-                'file' => 'required|image'
+                'file' => 'required|image|mimes:jpg,png,jpeg'
             ]);
             if ($request->hasfile('file')) {
                 $file = $request->file('file');

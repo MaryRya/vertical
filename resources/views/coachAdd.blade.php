@@ -14,7 +14,7 @@
                             <h1 class="text-xl text-center font-semibold p-3 leading-tight tracking-tight text-gray-900">
                                 Регистрация тренера
                             </h1>
-                            <div class="card-body mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+                            <div class="card-body mt-5 grid grid-cols-1 gap-x-5 gap-y-5 sm:grid-cols-6">
                                 <div class="sm:col-span-3">
                                     <label for="name" class="block text-sm font-medium leading-6 text-gray-900">Имя Фамилия</label>
                                         <input id="name" type="text" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" name="name" value="{{ old('name') }}" required autocomplete="name"  placeholder="Иван Иванов">
@@ -86,7 +86,7 @@
                             </div>
                         </div>
 
-                        <div class="mt-6 flex items-center justify-end gap-x-6">
+                        <div class="mt-4 flex items-center justify-end gap-x-6">
                             <button type="submit"
                                     class="rounded-md bg-indigo-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
                                 Добавить

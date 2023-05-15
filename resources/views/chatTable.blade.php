@@ -2,7 +2,7 @@
 @section('title', 'Вопросы')
 @section('content')
 
-    <div class="items-center px-5 py-10 xl:px-72 md:px-20 bg-[#f9f9fa]" style="min-height: 500px;">
+    <div class="items-center px-5 py-10 xl:px-72 md:px-20 bg-[#f9f9fa]" style="min-height: 550px;">
         <a href="/adminIndex" type="button" class=" mb-5 sm:text-sm text-xs font-semibold leading-6 text-gray-600">Вернуться назад</a>
         <div class="overflow-hidden bg-white border border-1 border border-2 border-indigo-200 border-r-teal-100 shadow-indigo-200  shadow-md rounded-lg">
             <div class="px-4 py-5 sm:px-6  text-center  bg-indigo-600">
