@@ -32,7 +32,7 @@
                         изображение</label>
                     <div class="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
                         <div class="text-center">
-                            <img src="/images/coaches/{{ Auth::user()->photo}}" class="ml-auto mr-auto w-14 md:w-1/6"  id="img"/>
+                            <img src="/images/coaches/{{ Auth::user()->photo}}" class="ml-auto mr-auto w-[110px] md:w-1/6"  id="img"/>
                             <div class="mt-4 flex text-sm leading-6 text-gray-600">
                                 <label for="file-upload"
                                        class="relative cursor-pointer rounded-md ml-auto mr-auto bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500">

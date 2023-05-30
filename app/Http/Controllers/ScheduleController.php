@@ -77,7 +77,7 @@ class ScheduleController extends Controller
                     $arr[$i]["backgroundColor"] = "#9B5571";
                 }
                 if($d->id_direction == 2){
-                    $arr[$i]["backgroundColor"] = "#61698F";
+                    $arr[$i]["backgroundColor"] = "#596080";
                 }
                 if($d->id_direction == 3){
                     $arr[$i]["backgroundColor"] = "#4F7365";

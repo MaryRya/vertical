@@ -48,7 +48,7 @@ class IndexController extends Controller
             $chat_views = Chat::where([['id_user', '=', auth()->user()->id], ['view', '=', 0]]);
             $count = $chat_views->count();
             $data = Dance_lesson::
-            select("Dance_lesson.lesson_name", "Schedule.date_lesson", "Time_lesson.start_time",
+            select("Dance_lesson.lesson_name", "Dance_lesson.lesson_price","Schedule.date_lesson", "Time_lesson.start_time",
                 "Time_lesson.end_time", "Hall.hall_name","Users.name", "Records_clients.id_record", "Schedule.id_schedule")
                 ->join("Schedule", "Schedule.id_lesson", "Dance_lesson.id_lesson")
                 ->join("Time_lesson", "Time_lesson.id_time_lesson", "Schedule.id_time_lesson")
@@ -71,6 +71,19 @@ class IndexController extends Controller
             return redirect("profile");
         }
     }
+
+    public function payment(Request $request)
+    {
+        if (auth()->check()) {
+            $chat_views = Chat::where([['id_user', '=', auth()->user()->id], ['view', '=', 0]]);
+            $count = $chat_views->count();
+            return view('payment', ['count' => $count, 'datenow'=>date("Y-m-d")]);
+        }
+        else return redirect('/');
+
+    }
+
+
     public function profileEditAction(Request $request)
     {
         if(isset(auth()->user()->name)){

@@ -25,7 +25,7 @@
                 <form method="GET" action="/attendance/export">
                     <button type="submit"
                             class="rounded-md bg-indigo-600 px-5 py-2.5 sm:text-sm text-xs font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-                        Выгрузить отчет
+                        Скачать отчет
                     </button>
                 </form>
             </div>
@@ -57,7 +57,17 @@
                                 <input aria-describedby="terms" type="checkbox" name="terms" class=" border-gray-300 rounded  hover:bg-blue-700 " required disabled>
 
                             @endif
+                            <a class="md:text-sm text-xs font-medium text-gray-500 mr-2 ml-2">Оплата</a>
+                            @if ($d->date_lesson == date("Y-m-d"))
+                                @if ($d->attendance == 1)
+                                    <input id="check_{{$d->id_record}}" onclick="terms_check({{$d->id_record}}, '{{ csrf_token() }}')" aria-describedby="terms" type="checkbox" name="terms" class=" border-gray-300 rounded  hover:bg-blue-700 " required checked>
+                                @else
+                                    <input id="check_{{$d->id_record}}" onclick="terms_check({{$d->id_record}}, '{{ csrf_token() }}')" aria-describedby="terms" type="checkbox" name="terms" class=" border-gray-300 rounded  hover:bg-blue-700 " required>
+                                @endif
+                            @else
+                                <input aria-describedby="terms" type="checkbox" name="terms" class=" border-gray-300 rounded  hover:bg-blue-700 " required disabled>
 
+                            @endif
                         </div>
 
                     </div>

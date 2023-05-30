@@ -1,4 +1,4 @@
-@extends('main')
+ @extends('main')
 @section('title', 'Личный кабинет')
 @section('content')
         <form id="profile" class="flex flex-col md:px-40 bg-[#f9f9fa] px-6 mx-auto py-8" >
@@ -26,7 +26,7 @@
                     <div class=" mb-3 mt-6">
                         <div class="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
                             <div class="text-center">
-                                <img src="/images/coaches/{{ Auth::user()->photo}}" class="ml-auto mr-auto w-14 md:w-1/6"  id="img"/>
+                                <img src="/images/coaches/{{ Auth::user()->photo}}" class="ml-auto mr-auto w-[110px] md:w-1/6"  id="img"/>
                             </div>
                         </div>
                     </div>
@@ -52,6 +52,17 @@
                 </div>
             </div>
             </div>
+
+            <div class="bg-[#f9f9fa]">
+                <div id="direction" class=" flex mx-auto h-16 bg-[#f9f9fa] w-full rounded-md">
+                    <div class="items-center flex mx-auto gap-12">
+                        <a href="profile/?date=1"><button class="px-4 md:px-1 self-center text-md  font-semibold border-b-2 border-indigo-400" >Прошедшие</button></a>
+                        <a href="profile/?date=2"><button class="px-4 md:px-1 self-center text-md  font-semibold  border-b-2 border-indigo-400">Текущие</button></a>
+                        <a href="profile/?date=3"><button class="px-4 md:px-1 self-center text-md  font-semibold  border-b-2 border-indigo-400">Все</button></a>
+                    </div>
+                </div>
+            </div>
+
             <div id="table" class=" flex bg-[#f9f9fa] flex-col h-screen">
                 <div class="overflow-x-auto sm:mx-0.5 lg:mx-0.5">
                     <div class="py-2 inline-block min-w-full sm:px-8 ">
@@ -62,17 +73,22 @@
                                     <th scope="col" class="text-center rounded-l-md bg-indigo-400 text-white text-md font-bold text-gray-900 px-6 py-4 text-left">
                                         Занятие
                                     </th>
-                                    <th scope="col" class="text-center bg-indigo-400 text-white text-md font-bold text-gray-900 px-6 py-4 text-left">
+                                    <th scope="col" class="text-center bg-indigo-400 text-white text-md font-bold text-gray-900 px-2 py-4 text-left">
                                         Дата
                                     </th>
-                                    <th scope="col" class="text-center bg-indigo-400 text-white text-md font-bold text-gray-900 px-6 py-4 text-left">
+                                    <th scope="col" class="text-center bg-indigo-400 text-white text-md font-bold text-gray-900 px-2 py-4 text-left">
                                         Время
                                     </th>
-                                    <th scope="col" class="text-center bg-indigo-400 text-white text-md font-bold text-gray-900 px-6 py-4 text-left">
+                                    <th scope="col" class="text-center bg-indigo-400 text-white text-md font-bold text-gray-900 px-2 py-4 text-left">
                                         Зал
                                     </th>
-                                    <th scope="col" class="text-center bg-indigo-400 text-white text-md font-bold text-gray-900 px-6 py-4 text-left">
+                                    <th scope="col" class="text-center bg-indigo-400 text-white text-md font-bold text-gray-900 px-2 py-4 text-left">
                                         Тренер
+                                    </th>
+                                    <th scope="col" class="text-center bg-indigo-400 text-white text-md font-bold text-gray-900 px-2 py-4 text-left">
+                                        Стоимость
+                                    </th>
+                                    <th scope="col" class="text-center bg-indigo-400 text-white text-md font-bold text-gray-900 px-2 py-4 text-left">
                                     </th>
                                     <th scope="col" class="text-center bg-indigo-400 rounded-r-md text-white text-md font-bold text-gray-900 px-6 py-4 text-left">
                                     </th>
@@ -80,21 +96,27 @@
                                 </thead>
                                 <tbody>
                                 @foreach ($data as $d)
-                                    <tr class="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100">
-                                        <td class="text-center text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                    @if (isset($_GET['date']) && ($_GET['date'] == 1))
+
+                                        @if ($d->date_lesson < $datenow)
+                                        <tr class="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100">
+                                        <td class="text-center text-sm text-gray-900 font-light px-2 py-4 whitespace-nowrap">
                                             {{$d->lesson_name}}
                                         </td>
-                                        <td class="text-center text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                        <td class="text-center text-sm text-gray-900 font-light px-2 py-4 whitespace-nowrap">
                                             {{$d->date_lesson}}
                                         </td>
-                                        <td class="text-center text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                        <td class="text-center text-sm text-gray-900 font-light px-2 py-4 whitespace-nowrap">
                                             {{mb_substr($d->start_time,0, 5)}} - {{mb_substr($d->end_time,0, 5)}}
                                         </td>
-                                        <td class="text-center text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                        <td class="text-center text-sm text-gray-900 font-light px-2 py-4 whitespace-nowrap">
                                             {{$d->hall_name}}
                                         </td>
-                                        <td class="text-center text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                        <td class="text-center text-sm text-gray-900 font-light px-2 py-4 whitespace-nowrap">
                                             {{$d->name}}
+                                        </td>
+                                        <td class="text-center text-sm text-gray-900 font-light px-2 py-4 whitespace-nowrap">
+                                            {{$d->lesson_price}} руб.
                                         </td>
                                         <td>
                                         <form method="POST" action="{{ route('cancelLesson') }}">
@@ -104,13 +126,138 @@
                                                 @if ($d->date_lesson < $datenow)
                                                 @else
                                                     <button type="submit"
-                                                            class=" rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                                                            class=" rounded-md bg-indigo-600 px-2 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
                                                         Отменить
                                                     </button>
                                                 @endif
                                             </form>
                                         </td>
+                                        <td>
+                                                <input type="hidden" name="id_record" value="{{$d->id_record}}">
+                                                <input type="hidden" name="id_schedule" value="{{$d->id_schedule}}">
+                                                @if ($d->date_lesson < $datenow)
+                                                @else
+                                                    @if($d->pay == 0)
+                                                    <a href="/payment?id_record={{$d->id_record}}&price={{$d->lesson_price}}"
+                                                            class=" rounded-md bg-[#60ADAC] px-2 py-2 text-sm font-semibold text-white shadow-sm hover:bg-[#448887] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                                                        Оплатить
+                                                    </a>
+                                                    @endif
+                                                @endif
+                                        </td>
                                     </tr>
+
+
+                                        @endif
+                                    @endif
+
+
+                                    @if (isset($_GET['date']) && ($_GET['date'] == 2))
+                                        @if ($d->date_lesson >= $datenow)
+                                            <tr class="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100">
+                                        <td class="text-center text-sm text-gray-900 font-light px-2 py-4 whitespace-nowrap">
+                                            {{$d->lesson_name}}
+                                        </td>
+                                        <td class="text-center text-sm text-gray-900 font-light px-2 py-4 whitespace-nowrap">
+                                            {{$d->date_lesson}}
+                                        </td>
+                                        <td class="text-center text-sm text-gray-900 font-light px-2 py-4 whitespace-nowrap">
+                                            {{mb_substr($d->start_time,0, 5)}} - {{mb_substr($d->end_time,0, 5)}}
+                                        </td>
+                                        <td class="text-center text-sm text-gray-900 font-light px-2 py-4 whitespace-nowrap">
+                                            {{$d->hall_name}}
+                                        </td>
+                                        <td class="text-center text-sm text-gray-900 font-light px-2 py-4 whitespace-nowrap">
+                                            {{$d->name}}
+                                        </td>
+                                        <td class="text-center text-sm text-gray-900 font-light px-2 py-4 whitespace-nowrap">
+                                            {{$d->lesson_price}} руб.
+                                        </td>
+                                        <td>
+                                        <form method="POST" action="{{ route('cancelLesson') }}">
+                                                {{ csrf_field() }}
+                                                <input type="hidden" name="id_record" value="{{$d->id_record}}">
+                                                <input type="hidden" name="id_schedule" value="{{$d->id_schedule}}">
+                                                @if ($d->date_lesson < $datenow)
+                                                @else
+                                                    <button type="submit"
+                                                            class=" rounded-md bg-indigo-600 px-2 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                                                        Отменить
+                                                    </button>
+                                                @endif
+                                            </form>
+                                        </td>
+                                        <td>
+                                                <input type="hidden" name="id_record" value="{{$d->id_record}}">
+                                                <input type="hidden" name="id_schedule" value="{{$d->id_schedule}}">
+                                                @if ($d->date_lesson < $datenow)
+                                                @else
+                                                    @if($d->pay == 0)
+                                                    <a href="/payment?id_record={{$d->id_record}}&price={{$d->lesson_price}}"
+                                                            class=" rounded-md bg-[#60ADAC] px-2 py-2 text-sm font-semibold text-white shadow-sm hover:bg-[#448887] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                                                        Оплатить
+                                                    </a>
+                                                    @endif
+                                                @endif
+                                        </td>
+                                    </tr>
+
+                                        @endif
+                                    @endif
+
+
+                                    @if (isset($_GET['date']) && ($_GET['date'] == 3))
+
+<tr class="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100">
+                                        <td class="text-center text-sm text-gray-900 font-light px-2 py-4 whitespace-nowrap">
+                                            {{$d->lesson_name}}
+                                        </td>
+                                        <td class="text-center text-sm text-gray-900 font-light px-2 py-4 whitespace-nowrap">
+                                            {{$d->date_lesson}}
+                                        </td>
+                                        <td class="text-center text-sm text-gray-900 font-light px-2 py-4 whitespace-nowrap">
+                                            {{mb_substr($d->start_time,0, 5)}} - {{mb_substr($d->end_time,0, 5)}}
+                                        </td>
+                                        <td class="text-center text-sm text-gray-900 font-light px-2 py-4 whitespace-nowrap">
+                                            {{$d->hall_name}}
+                                        </td>
+                                        <td class="text-center text-sm text-gray-900 font-light px-2 py-4 whitespace-nowrap">
+                                            {{$d->name}}
+                                        </td>
+                                        <td class="text-center text-sm text-gray-900 font-light px-2 py-4 whitespace-nowrap">
+                                            {{$d->lesson_price}} руб.
+                                        </td>
+                                        <td>
+                                        <form method="POST" action="{{ route('cancelLesson') }}">
+                                                {{ csrf_field() }}
+                                                <input type="hidden" name="id_record" value="{{$d->id_record}}">
+                                                <input type="hidden" name="id_schedule" value="{{$d->id_schedule}}">
+                                                @if ($d->date_lesson < $datenow)
+                                                @else
+                                                    <button type="submit"
+                                                            class=" rounded-md bg-indigo-600 px-2 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                                                        Отменить
+                                                    </button>
+                                                @endif
+                                            </form>
+                                        </td>
+                                        <td>
+                                                <input type="hidden" name="id_record" value="{{$d->id_record}}">
+                                                <input type="hidden" name="id_schedule" value="{{$d->id_schedule}}">
+                                                @if ($d->date_lesson < $datenow)
+                                                @else
+                                                    @if($d->pay == 0)
+                                                    <a href="/payment?id_record={{$d->id_record}}&price={{$d->lesson_price}}"
+                                                            class=" rounded-md bg-[#60ADAC] px-2 py-2 text-sm font-semibold text-white shadow-sm hover:bg-[#448887] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                                                        Оплатить
+                                                    </a>
+                                                    @endif
+                                                @endif
+                                        </td>
+                                    </tr>
+
+
+                                    @endif
                                 @endforeach
                                 </tbody>
                             </table>
