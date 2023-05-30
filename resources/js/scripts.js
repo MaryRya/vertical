@@ -131,3 +131,4 @@ function getNowDate(){
     var full_date = now_date.getFullYear() + "-" + m + "-" + d;
     return full_date;
 }
+

@@ -314,6 +314,5 @@ class AdminController extends Controller
         else{
             return redirect('/');
         }
-
     }
 }

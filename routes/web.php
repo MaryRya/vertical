@@ -17,8 +17,7 @@ Route::get('/profileEdit',  [IndexController::class, 'profileEdit'])->name('prof
 Route::post('/profileEditAction',  [IndexController::class, 'profileEditAction'])->name('profileEditAction');//кнопка изменения
 Route::post('/cancelLesson',  [IndexController::class, 'cancelLesson'])->name('cancelLesson');//отмена записи в лк
 Route::post('/reviewAction',  [IndexController::class, 'reviewAction'])->name('reviewAction');//отправление отзыва
-Route::get('/payment',  [IndexController::class, 'payment'])->name('payment');//отправление отзыва
-
+Route::match(['get','post'],'/payment',  [IndexController::class, 'payment'])->name('payment');//оплата
 
 Route::get('/adminIndex',  [AdminController::class, 'adminIndex'])->name('adminIndex');//админ панель
 Route::get('/lessonAdd',  [AdminController::class, 'lessonAdd'])->name('lessonAdd');//добавить занятие
@@ -43,6 +42,7 @@ Route::post('/cardLesson',  [ScheduleController::class, 'cardLesson'])->name('ca
 Route::post('/enrollLesson',  [ScheduleController::class, 'enrollLesson'])->name('enrollLesson');//записаться на занятие
 Route::get('/scheduleAdd',  [ScheduleController::class, 'scheduleAdd'])->name('scheduleAdd');//добавление расписания
 Route::post('/scheduleAction',  [ScheduleController::class, 'scheduleAction'])->name('scheduleAction');//кнопка добавления расписания
+Route::post('/schedule',  [ScheduleController::class, 'schedule'])->name('schedule');//расписание
 Route::post('/scheduleChange',  [ScheduleController::class, 'scheduleChange'])->name('scheduleChange'); //перемещение занятия (админ)
 Route::post('/deleteSchedule',  [ScheduleController::class, 'deleteSchedule'])->name('deleteSchedule'); //удаление
 Route::get('/setEmail',  [ScheduleController::class, 'setEmail'])->name('setEmail');//оправление сообщения

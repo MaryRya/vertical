@@ -12,48 +12,60 @@
             <h6 class="mb-3 text-md font-medium text-black dark:text-white">
                  Направления
             </h6>
+            <form action="/schedule" method="POST">
+                {{ csrf_field() }}
             <ul class="space-y-2 text-sm" aria-labelledby="dropdownDefault">
+                @foreach($dance_directions as $dd)
                 <li class="flex items-center">
-                    <input id="apple" type="checkbox" value=""
+                    @if(in_array($dd->id_direction, $arr_n))
+
+                        <input name="p_{{$dd->id_direction}}" type="checkbox" value="{{$dd->id_direction}}"
+                           class="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500" checked />
+                    @else
+
+                        <input name="p_{{$dd->id_direction}}" type="checkbox" value="{{$dd->id_direction}}"
                            class="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500" />
+                    @endif
+
 
                     <label for="apple" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100">
-                        Apple (56)
+                        {{$dd->name_direction}}
                     </label>
                 </li>
-                <li class="flex items-center">
-                    <input id="fitbit" type="checkbox" value=""
-                           class="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500" />
+                @endforeach
+            </ul>
 
-                    <label for="fitbit" class="ml-2 text-sm font-medium text-gray-900 ">
-                        Fitbit (56)
-                    </label>
-                </li>
-            </ul>
-            <h6 class="mt-3 mb-3 text-md font-medium text-black">
-                 Занятия
-            </h6>
-            <ul class="space-y-2 text-sm" aria-labelledby="dropdownDefault">
-                <li class="flex items-center">
-                    <input id="apple" type="checkbox" value=""
-                           class="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500" />
-                    <label for="apple" class="ml-2 text-sm font-medium text-gray-900 ">
-                        Apple (56)
-                    </label>
-                </li>
-            </ul>
             <h6 class="mt-3 mb-3 text-md font-medium text-black ">
                 Тренеры
             </h6>
             <ul class="space-y-2 text-sm" aria-labelledby="dropdownDefault">
+
+                @foreach($users as $user)
+
                 <li class="flex items-center">
-                    <input id="apple" type="checkbox" value=""
+
+                    @if(in_array($user['id'], $arr_p))
+
+
+                    <input name="u_{{$user['id_number']}}" type="checkbox" value="{{$user['id']}}"
+                           class="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500" checked />
+                    @else
+
+                    <input name="u_{{$user['id_number']}}" type="checkbox" value="{{$user['id']}}"
                            class="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500" />
+
+
+                    @endif
+
                     <label for="apple" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100">
-                        Apple (56)
+                        {{$user['name']}}
                     </label>
                 </li>
+                @endforeach
             </ul>
+
+            <button class="text-white bg-[#7179b9] hover:bg-indigo-800 font-medium rounded-md text-sm mt-2 px-2 py-1 text-center inline-flex items-center">Применить</button>
+        </form>
         </div>
     </div>
 
@@ -136,6 +148,7 @@
                     right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth',
                 },
                 eventClick: function(info){
+                    console.log(info);
                     var el = document.getElementById("medium-modal-1");
                     el.style.display = "block"
                     document.getElementById("title").value = info.event.title;
@@ -203,6 +216,8 @@
             });
             calendar.render();
         });
+        //let f = window.location.href;
+
     </script>
     <script src="{{ Vite::asset('resources/js/scripts.js') }}"></script>
 @endsection

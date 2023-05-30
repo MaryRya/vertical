@@ -54,8 +54,8 @@
             </div>
 
             <div class="bg-[#f9f9fa]">
-                <div id="direction" class=" flex mx-auto h-16 bg-[#f9f9fa] w-full rounded-md">
-                    <div class="items-center flex mx-auto gap-12">
+                <div id="direction" class=" flex mx-auto h-11 bg-[#f9f9fa] w-full rounded-md">
+                    <div class="items-center flex mx-auto gap-12 ">
                         <a href="profile/?date=1"><button class="px-4 md:px-1 self-center text-md  font-semibold border-b-2 border-indigo-400" >Прошедшие</button></a>
                         <a href="profile/?date=2"><button class="px-4 md:px-1 self-center text-md  font-semibold  border-b-2 border-indigo-400">Текущие</button></a>
                         <a href="profile/?date=3"><button class="px-4 md:px-1 self-center text-md  font-semibold  border-b-2 border-indigo-400">Все</button></a>
@@ -204,11 +204,9 @@
 
                                         @endif
                                     @endif
-
-
                                     @if (isset($_GET['date']) && ($_GET['date'] == 3))
 
-<tr class="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100">
+                                   <tr class="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100">
                                         <td class="text-center text-sm text-gray-900 font-light px-2 py-4 whitespace-nowrap">
                                             {{$d->lesson_name}}
                                         </td>

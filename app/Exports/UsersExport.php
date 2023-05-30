@@ -19,7 +19,12 @@ class UsersExport implements FromCollection
                 CASE
                     WHEN records_clients.attendance > 0 THEN 'Присутствие'
                     ELSE 'Отсутствие'
-                END ")
+                END, 
+                CASE
+                    WHEN records_clients.pay > 0 THEN 'Оплачено'
+                    ELSE 'Не оплачено'
+                END 
+                ")
             ->get();
         return $data;
     }

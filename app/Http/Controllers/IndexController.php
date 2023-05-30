@@ -8,6 +8,7 @@ use App\Models\Dance_direction;
 use App\Models\Schedule;
 use App\Models\Records_clients;
 use App\Models\Reviews;
+
 use Illuminate\Http\Request;
 
 
@@ -49,7 +50,7 @@ class IndexController extends Controller
             $count = $chat_views->count();
             $data = Dance_lesson::
             select("Dance_lesson.lesson_name", "Dance_lesson.lesson_price","Schedule.date_lesson", "Time_lesson.start_time",
-                "Time_lesson.end_time", "Hall.hall_name","Users.name", "Records_clients.id_record", "Schedule.id_schedule")
+                "Time_lesson.end_time", "Hall.hall_name","Users.name", "Records_clients.id_record", "Schedule.id_schedule", "Records_clients.pay")
                 ->join("Schedule", "Schedule.id_lesson", "Dance_lesson.id_lesson")
                 ->join("Time_lesson", "Time_lesson.id_time_lesson", "Schedule.id_time_lesson")
                 ->join("Hall", "Hall.id_hall", "Schedule.id_hall")
@@ -77,13 +78,22 @@ class IndexController extends Controller
         if (auth()->check()) {
             $chat_views = Chat::where([['id_user', '=', auth()->user()->id], ['view', '=', 0]]);
             $count = $chat_views->count();
+
+            $method = $request->method();
+            if ($request->isMethod('post')){
+                $id_schedule = $request->id_schedule;
+                $id_user = auth()->user()->id;
+                Records_clients::where('id_record', $request->id_record)->update
+                ([
+                    'pay' => 1,
+                ]);
+                return redirect('/profile?date=3');
+            }
             return view('payment', ['count' => $count, 'datenow'=>date("Y-m-d")]);
         }
         else return redirect('/');
 
     }
-
-
     public function profileEditAction(Request $request)
     {
         if(isset(auth()->user()->name)){

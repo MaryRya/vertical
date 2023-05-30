@@ -4,13 +4,14 @@ namespace App\Http\Controllers;
 use App\Models\Chat;
 use App\Models\User;
 use App\Models\Dance_lesson;
+use App\Models\Dance_direction;
 use App\Models\Schedule;
 use App\Models\Hall;
 use App\Models\Records_clients;
 use App\Models\Time_lesson;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
-
+use Illuminate\Support\Facades\DB;
 
 class ScheduleController extends Controller
 {
@@ -27,8 +28,44 @@ class ScheduleController extends Controller
         return false;
     }
 
-    public function schedule()
+    public function schedule(Request $request)
     {
+        $arr_p = [];
+        $arr_n = [];
+        $users = User::where('id_role', 3)->get();
+        $method = $request->method();
+        if ($request->isMethod('post')){
+
+            $p1 = $request["p_1"];
+            if(isset($p1)){
+                $arr_n[] = $p1;
+            }
+            $p2 = $request["p_2"];
+            if(isset($p2)){
+                $arr_n[] = $p2;
+            }
+            $p3 = $request["p_3"];
+            if(isset($p3)){
+                $arr_n[] = $p3;
+            }
+
+            $count_user = $users->count();
+            $i = 1;
+            while($i <= $count_user){
+                if(isset($request["u_".$i])){
+                    $arr_p[] = $request["u_".$i];
+                }
+
+                $i++;
+            }
+            $i = 1;
+
+        }
+
+
+        $id_1 = $_GET["id_1"]??0;
+        $id_2 = $_GET["id_2"]??0;
+        $id_3 = $_GET["id_3"]??0;
         if(auth()->check()){
             $chat_views = Chat::where([['id_user', '=', auth()->user()->id], ['view', '=', 0]]);
             $count = $chat_views->count();
@@ -43,15 +80,91 @@ class ScheduleController extends Controller
                 ->join("users", "users.id", "Schedule.id_user")
                 ->where("users.id", auth()->user()->id)
                 ->get();
+
         }
         else{
-            $data = Schedule::join("Time_lesson", "Time_lesson.id_time_lesson", "Schedule.id_time_lesson")
+            if((sizeof($arr_p) > 0) || (sizeof($arr_n) > 0)){
+
+                if(sizeof($arr_p) > 0 && (sizeof($arr_n) == 0))
+                {
+                    $data = Schedule::join("Time_lesson", "Time_lesson.id_time_lesson", "Schedule.id_time_lesson")
+                        ->join("Dance_lesson", "Dance_lesson.id_lesson", "Schedule.id_lesson")
+                        ->join("Hall", "Hall.id_hall", "Schedule.id_hall")
+                        ->join("users", "users.id", "Schedule.id_user")
+                        ->join("dance_direction", "dance_direction.id_direction", "dance_lesson.id_direction")
+
+                        ->whereIn('users.id',$arr_p)
+                        ->get();
+                }
+                if((sizeof($arr_n) > 0) && (sizeof($arr_p) == 0))
+                {
+                    $data = Schedule::join("Time_lesson", "Time_lesson.id_time_lesson", "Schedule.id_time_lesson")
+                        ->join("Dance_lesson", "Dance_lesson.id_lesson", "Schedule.id_lesson")
+                        ->join("Hall", "Hall.id_hall", "Schedule.id_hall")
+                        ->join("users", "users.id", "Schedule.id_user")
+                        ->join("dance_direction", "dance_direction.id_direction", "dance_lesson.id_direction")
+
+                        ->whereIn('dance_direction.id_direction',$arr_n)
+                        ->get();
+                }
+                if((sizeof($arr_n) > 0) && (sizeof($arr_p) > 0)){
+                    $data = Schedule::join("Time_lesson", "Time_lesson.id_time_lesson", "Schedule.id_time_lesson")
+                        ->join("Dance_lesson", "Dance_lesson.id_lesson", "Schedule.id_lesson")
+                        ->join("Hall", "Hall.id_hall", "Schedule.id_hall")
+                        ->join("users", "users.id", "Schedule.id_user")
+                        ->join("dance_direction", "dance_direction.id_direction", "dance_lesson.id_direction")
+
+                        ->whereIn('users.id',$arr_p)
+                        ->whereIn('dance_direction.id_direction',$arr_n)
+                        ->get();
+                }
+
+
+            }
+            else{
+                $data = Schedule::join("Time_lesson", "Time_lesson.id_time_lesson", "Schedule.id_time_lesson")
+                    ->join("Dance_lesson", "Dance_lesson.id_lesson", "Schedule.id_lesson")
+                    ->join("Hall", "Hall.id_hall", "Schedule.id_hall")
+                    ->join("users", "users.id", "Schedule.id_user")
+                    ->join("dance_direction", "dance_direction.id_direction", "dance_lesson.id_direction")
+                    ->get();
+            }
+            /*if(sizeof($arr_n) > 0){
+                 $data = Schedule::join("Time_lesson", "Time_lesson.id_time_lesson", "Schedule.id_time_lesson")
                 ->join("Dance_lesson", "Dance_lesson.id_lesson", "Schedule.id_lesson")
                 ->join("Hall", "Hall.id_hall", "Schedule.id_hall")
                 ->join("users", "users.id", "Schedule.id_user")
+                ->join("dance_direction", "dance_direction.id_direction", "dance_lesson.id_direction")
+
+
                 ->get();
+            }
+            else{
+                 $data = Schedule::join("Time_lesson", "Time_lesson.id_time_lesson", "Schedule.id_time_lesson")
+            ->join("Dance_lesson", "Dance_lesson.id_lesson", "Schedule.id_lesson")
+            ->join("Hall", "Hall.id_hall", "Schedule.id_hall")
+            ->join("users", "users.id", "Schedule.id_user")
+            ->join("dance_direction", "dance_direction.id_direction", "dance_lesson.id_direction")
+            ->get();
+            }*/
+
+
+
+
         }
         $les = Dance_lesson::select("lesson_name","id_lesson")->get();
+
+        $dance_directions = Dance_direction::all();
+
+        $arr_users = [];
+        $i=1;
+        foreach($users as $user){
+            $arr_users[$i]['id_number'] = $i;
+            $arr_users[$i]['id'] = $user->id;
+            $arr_users[$i]['name'] = $user->name;
+            $i++;
+        }
+
         $arr = [];
         $i=0;
         foreach($data as $d){
@@ -60,6 +173,7 @@ class ScheduleController extends Controller
             $arr[$i]["title"] = $d->lesson_name;
             $arr[$i]["id"] = $d->id_lesson;
             $arr[$i]["groupId"] = $d->id_schedule;
+
             if($d->id_direction == 1){
                 $arr[$i]["backgroundColor"] = "#CF6A93";
                 $arr[$i]["borderColor"] = "#CF6A93";
@@ -84,7 +198,7 @@ class ScheduleController extends Controller
                 }
             }$i++;
         }
-        return view('schedule', ['data'=>json_encode($arr), 'les'=>$les, 'event'=>0], ['count' => $count]);
+        return view('schedule', ['data'=>json_encode($arr), 'les'=>$les, 'event'=>0, 'count' => $count, 'dance_directions' => $dance_directions, 'users' => $arr_users, 'arr_p' => $arr_p, 'arr_n' => $arr_n]);
     }
 
     public function cardLesson(Request $request){
@@ -146,8 +260,55 @@ class ScheduleController extends Controller
         }
     }
 
+
+    public function createDateRangeArray($strDateFrom,$strDateTo)
+    {
+
+        $aryRange=array();
+
+        $iDateFrom=mktime(1,0,0,substr($strDateFrom,5,2),     substr($strDateFrom,8,2),substr($strDateFrom,0,4));
+        $iDateTo=mktime(1,0,0,substr($strDateTo,5,2),     substr($strDateTo,8,2),substr($strDateTo,0,4));
+
+        if ($iDateTo>=$iDateFrom)
+        {
+            array_push($aryRange,date('Y-m-d',$iDateFrom)); // first entry
+            while ($iDateFrom<$iDateTo)
+            {
+                $iDateFrom+=86400; // add 24 hours
+                array_push($aryRange,date('Y-m-d',$iDateFrom));
+            }
+        }
+        return $aryRange;
+    }
+
     public function scheduleAction(Request $request,Schedule $schedule)
     {
+
+
+
+
+
+        $replay = [];
+
+        if($request->w1 == 'w1')
+            $replay[] = 1;
+        if($request->w2 == 'w2')
+            $replay[] = 2;
+        if($request->w3 == 'w3')
+            $replay[] = 3;
+        if($request->w4 == 'w4')
+            $replay[] = 4;
+        if($request->w5 == 'w5')
+            $replay[] = 5;
+        if($request->w6 == 'w6')
+            $replay[] = 6;
+        $str = implode(',', $replay);
+
+
+
+
+
+
         if($this->auth_admin()){
             $data = $request->validate([
                 'date_lesson' => 'required',
@@ -157,15 +318,32 @@ class ScheduleController extends Controller
                 'id_user' => 'required',
                 'count_places' => 'required',
             ]);
-            if($data["date_lesson"] < date("Y-m-d")) return redirect('/scheduleAdd');
-            $schedule->fill($data);
-            if($schedule->save()){
-                return redirect('scheduleAdd?action=1');
-            }
-            else{
-                return redirect('scheduleAdd?action=0');
 
+            if($data["date_lesson"] < date("Y-m-d")) return redirect('/scheduleAdd');
+            if(!empty($request->date_end)){
+                $arr = $this->createDateRangeArray( $request->date_lesson, $request->date_end);
+                foreach($arr as $ar){
+                    $w = date("w",strtotime($ar));
+                    if(in_array($w, $replay)){
+                        echo $ar."<br />";
+
+                        DB::insert('insert into schedule (date_lesson, id_time_lesson , id_lesson , id_hall , id_user , count_places) values (?, ?, ?, ?, ?, ?)', [$ar, $data['id_time_lesson'], $data['id_lesson'], $data['id_hall'], $data['id_user'], $data['count_places']]);
+
+
+                    }
+                }
+                return redirect('scheduleAdd?action=1');
+            }else{
+                $schedule->fill($data);
+                if($schedule->save()){
+                    return redirect('scheduleAdd?action=1');
+                }
+                else{
+                    return redirect('scheduleAdd?action=0');
+
+                }
             }
+
         }
     }
 
