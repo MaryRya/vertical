@@ -129,27 +129,6 @@ class ScheduleController extends Controller
                     ->join("dance_direction", "dance_direction.id_direction", "dance_lesson.id_direction")
                     ->get();
             }
-            /*if(sizeof($arr_n) > 0){
-                 $data = Schedule::join("Time_lesson", "Time_lesson.id_time_lesson", "Schedule.id_time_lesson")
-                ->join("Dance_lesson", "Dance_lesson.id_lesson", "Schedule.id_lesson")
-                ->join("Hall", "Hall.id_hall", "Schedule.id_hall")
-                ->join("users", "users.id", "Schedule.id_user")
-                ->join("dance_direction", "dance_direction.id_direction", "dance_lesson.id_direction")
-
-
-                ->get();
-            }
-            else{
-                 $data = Schedule::join("Time_lesson", "Time_lesson.id_time_lesson", "Schedule.id_time_lesson")
-            ->join("Dance_lesson", "Dance_lesson.id_lesson", "Schedule.id_lesson")
-            ->join("Hall", "Hall.id_hall", "Schedule.id_hall")
-            ->join("users", "users.id", "Schedule.id_user")
-            ->join("dance_direction", "dance_direction.id_direction", "dance_lesson.id_direction")
-            ->get();
-            }*/
-
-
-
 
         }
         $les = Dance_lesson::select("lesson_name","id_lesson")->get();
@@ -284,10 +263,6 @@ class ScheduleController extends Controller
     public function scheduleAction(Request $request,Schedule $schedule)
     {
 
-
-
-
-
         $replay = [];
 
         if($request->w1 == 'w1')
@@ -303,12 +278,6 @@ class ScheduleController extends Controller
         if($request->w6 == 'w6')
             $replay[] = 6;
         $str = implode(',', $replay);
-
-
-
-
-
-
         if($this->auth_admin()){
             $data = $request->validate([
                 'date_lesson' => 'required',
@@ -328,8 +297,6 @@ class ScheduleController extends Controller
                         echo $ar."<br />";
 
                         DB::insert('insert into schedule (date_lesson, id_time_lesson , id_lesson , id_hall , id_user , count_places) values (?, ?, ?, ?, ?, ?)', [$ar, $data['id_time_lesson'], $data['id_lesson'], $data['id_hall'], $data['id_user'], $data['count_places']]);
-
-
                     }
                 }
                 return redirect('scheduleAdd?action=1');

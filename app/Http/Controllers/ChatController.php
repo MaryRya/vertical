@@ -13,6 +13,7 @@ use App\Models\Records_clients;
 use App\Models\Time_lesson;
 use App\Models\Reviews;
 use App\Http\Controllers\Auth;
+use Illuminate\Support\Facades\Mail;
 
 
 class ChatController extends Controller
@@ -43,6 +44,13 @@ class ChatController extends Controller
         } else return redirect('/');
     }
 
+    private function sendMail($temp, $data, $to_name, $to_email){
+        Mail::send($temp, $data, function($message) use ($to_name, $to_email) {
+            $message->to($to_email, $to_name)->subject('Ответ от Vertical');
+            $message->from('admin@ad.ru','Vertical');
+        });
+    }
+
     public function chatAjax(Request $request, Chat $chat)
     {
         if(auth()->check()){
@@ -51,6 +59,12 @@ class ChatController extends Controller
                     $chat_update = Chat::where('id_user',$request->session()->get('id_user'))->whereNull('answer')->update([
                         'answer' => $request->question,
                     ]);
+
+                    $user_current = User::select('email', 'name')->where('id', $request->session()->get('id_user'))->first();
+
+                    $data = ['name'=> $user_current['name']];
+                    $this->sendMail("emails/chat", $data, $user_current['name'], $user_current['email']);
+
                 }
                 else{
                     $chat->question = $request->question;

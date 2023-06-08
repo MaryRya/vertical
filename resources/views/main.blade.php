@@ -89,14 +89,25 @@
 
 
                         @else
+                            @if (Auth::user()->id_role == 2)
+
+                                <li>
+                                    <a href="/#reviews" class="block py-2 pl-3 pr-4 text-gray-700 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-600 md:p-0 ">Отзывы</a>
+                                </li>
+                                <li>
+                                    <a href="/adminIndex" class="block py-2 pl-3 pr-4 text-gray-700 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-600 md:p-0 ">Админ панель</a>
+                                </li>
+
+                            @endif
                             @if (Auth::user()->id_role == 2 || Auth::user()->id_role == 3)
                                 <li>
                                     <a href="/schedule" class="block py-2 pl-3 pr-4 text-gray-700 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-600 md:p-0 ">Расписание</a>
                                 </li>
-                                @else
-                                    <li>
-                                        <a href="/schedule" class="block py-2 pl-3 pr-4 text-gray-700 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-600 md:p-0 ">Расписание</a>
-                                    </li>
+
+                            @else
+                                <li>
+                                    <a href="/schedule" class="block py-2 pl-3 pr-4 text-gray-700 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-600 md:p-0 ">Расписание</a>
+                                </li>
                                 <li>
                                     <a href="/#team" class="block py-2 pl-3 pr-4 text-gray-700 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-600 md:p-0 ">Команда</a>
                                 </li>
@@ -108,8 +119,8 @@
                                 </li>
                                 <li>
                                     <a href="/chat" class="flex block py-2 pl-3 pr-4 text-gray-700 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-600 md:p-0">Чат
-                                        <div style="font-size: 11px; line-height: 12px; color: indigo">
-                                    {{ ($count != 0) ? "$count" : '' }}
+                                        <div class=" ml-1 w-4 text-center h-3 rounded-full" style="font-size: 11px; line-height: 12px; color: indigo">
+                                            {{ ($count != 0) ? "$count" : '' }}
                                         </div>
                                     </a>
                                 </li>

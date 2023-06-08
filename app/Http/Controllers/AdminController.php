@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Reviews;
 use Illuminate\Http\Request;
 use App\Models\Dance_lesson;
 use App\Models\Dance_direction;
@@ -9,6 +10,7 @@ use App\Models\Chat;
 use App\Models\Records_clients;
 use Illuminate\Support\Facades\Hash;
 use App\Exports\UsersExport;
+use Illuminate\Support\Facades\Mail;
 use Maatwebsite\Excel\Facades\Excel;
 
 class AdminController extends Controller
@@ -16,6 +18,30 @@ class AdminController extends Controller
     public function export()
     {
         return Excel::download(new UsersExport, 'Посещаемость.xlsx');
+    }
+
+    private function sendMail($temp, $data, $to_name, $to_email){
+        Mail::send($temp, $data, function($message) use ($to_name, $to_email) {
+            $message->to($to_email, $to_name)->subject('Ответ на отзыв');
+            $message->from('admin@ad.ru','Vertical');
+        });
+    }
+
+    public function reviewadd(Request $request, Reviews $rev){
+
+        Reviews::where('id_review', $request->id_rev)->update
+        ([
+            'response' => $request->txt_message
+        ]);
+        $user_id = Reviews::select('id_user')->where('id_review', $request->id_rev)->first();
+        $user_current = User::select('email', 'name')->where('id', $user_id["id_user"])->first();
+
+        $data = ['name'=> $user_current['name']];
+        $this->sendMail("emails/reviews_add", $data, $user_current['name'], $user_current['email']);
+
+
+
+        return ['data' =>  1];
     }
 
     private function auth_admin(){
@@ -83,7 +109,6 @@ class AdminController extends Controller
         }
 
     }
-
 
     public function lessonAdd()
     {

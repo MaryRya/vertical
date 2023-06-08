@@ -152,26 +152,32 @@ class IndexController extends Controller
     public function index()
     {
         if(isset(auth()->user()->id_role) && (auth()->user()->id_role == 3)) return redirect('/schedule');
-        if ($this->auth_admin()) return redirect('/adminIndex');
+        //if ($this->auth_admin()) return redirect('/adminIndex');
+
         if(auth()->check()){
             $chat_views = Chat::where([['id_user', '=', auth()->user()->id], ['view', '=', 0]])->whereNotNull('answer');
             $count = $chat_views->count();
         }
-        $reviews = Reviews::join("Users","Users.id","Reviews.id_user")->orderBy("date_review", 'DESC')->limit(3)->get();
+
+        $reviews = Reviews::join("users","users.id","reviews.id_user")
+            ->join('role', "users.id_role", "role.id_role")
+            ->orderBy("date_review", 'DESC')->limit(3)->get();
         $i = 0;
         foreach($reviews as $d){
             $date = explode(' ', $d->date_review);
             $reviews[$i]->date = $date[0];
             $i++;
         }
-        $reviews_all = Reviews::join("Users","Users.id","Reviews.id_user")->orderBy("date_review", 'DESC')->limit(20)->offset(3)->get();
+        $reviews_all = Reviews::join("users","users.id","reviews.id_user")
+            ->join('role', "users.id_role", "role.id_role")
+            ->orderBy("date_review", 'DESC')->limit(20)->offset(3)->get();
         $i = 0;
         foreach($reviews_all as $d){
             $date = explode(' ', $d->date_review);
             $reviews_all[$i]->date = $date[0];
             $i++;
         }
-        $users = User::where("id_role", 3)->get();
+        $users = User::join('role', "role.id_role", "users.id_role")->where("users.id_role", 3)->get();
         $dance = Dance_direction::all();
         foreach($dance as $d){
             $d["mass"] = Dance_lesson::where("id_direction", $d["id_direction"])->get();

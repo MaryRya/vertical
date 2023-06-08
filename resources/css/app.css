@@ -98,7 +98,7 @@ display:inline-flex;
 @media (min-width: 1024px) and (max-width: 1960px) {
     #card{
         left: 33%;
-        top:10%;
+        top:15%;
     }
     #successModal{
         left: 35%;

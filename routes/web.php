@@ -36,6 +36,8 @@ Route::get('/coachDelete/{id}',  [AdminController::class, 'coachDelete'])->name(
 Route::get('/attendance/export',  [AdminController::class, 'export'])->name('export'); //ексель
 Route::match(['get','post'],'/attendance',  [AdminController::class, 'attendance'])->name('attendance');//посещаемость
 Route::match(['get','post'],'/check',  [AdminController::class, 'check'])->name('check');//присутсвие
+Route::post('/reviewadd',  [AdminController::class, 'reviewadd'])->name('reviewadd');//обновлние отзыва
+Route::get('/reviewadd',  [AdminController::class, 'reviewadd'])->name('reviewadd');//обновлние отзыва
 
 Route::get('/schedule',  [ScheduleController::class, 'schedule'])->name('schedule');//расписание
 Route::post('/cardLesson',  [ScheduleController::class, 'cardLesson'])->name('cardLesson');
