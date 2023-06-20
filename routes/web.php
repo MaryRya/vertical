@@ -12,12 +12,15 @@ Auth::routes();
 Route::get('/home', [IndexController::class, 'index']);
 Route::get('/', [IndexController::class, 'index']);
 Route::get('/agreement',  [IndexController::class, 'agreement'])->name('agreement');//соглашение
+Route::get('/dogovor',  [IndexController::class, 'dogovor'])->name('dogovor');//соглашение
 Route::get('/profile',  [IndexController::class, 'profile'])->name('profile');//лк
 Route::get('/profileEdit',  [IndexController::class, 'profileEdit'])->name('profileEdit');//изменение данных
 Route::post('/profileEditAction',  [IndexController::class, 'profileEditAction'])->name('profileEditAction');//кнопка изменения
 Route::post('/cancelLesson',  [IndexController::class, 'cancelLesson'])->name('cancelLesson');//отмена записи в лк
 Route::post('/reviewAction',  [IndexController::class, 'reviewAction'])->name('reviewAction');//отправление отзыва
 Route::match(['get','post'],'/payment',  [IndexController::class, 'payment'])->name('payment');//оплата
+Route::post('/api/paykeeper',  [IndexController::class, 'api'])->name('api');
+Route::get('/api/paykeeper',  [IndexController::class, 'api'])->name('api');
 
 Route::get('/adminIndex',  [AdminController::class, 'adminIndex'])->name('adminIndex');//админ панель
 Route::get('/lessonAdd',  [AdminController::class, 'lessonAdd'])->name('lessonAdd');//добавить занятие
@@ -38,6 +41,8 @@ Route::match(['get','post'],'/attendance',  [AdminController::class, 'attendance
 Route::match(['get','post'],'/check',  [AdminController::class, 'check'])->name('check');//присутсвие
 Route::post('/reviewadd',  [AdminController::class, 'reviewadd'])->name('reviewadd');//обновлние отзыва
 Route::get('/reviewadd',  [AdminController::class, 'reviewadd'])->name('reviewadd');//обновлние отзыва
+Route::get('/hallcountget',  [AdminController::class, 'hallcountget'])->name('hallcountget');
+Route::get('/dancenamegetusers',  [AdminController::class, 'dancenamegetusers'])->name('dancenamegetusers');
 
 Route::get('/schedule',  [ScheduleController::class, 'schedule'])->name('schedule');//расписание
 Route::post('/cardLesson',  [ScheduleController::class, 'cardLesson'])->name('cardLesson');

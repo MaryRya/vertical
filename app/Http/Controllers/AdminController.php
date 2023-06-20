@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Hall;
 use App\Models\Reviews;
 use Illuminate\Http\Request;
 use App\Models\Dance_lesson;
@@ -39,9 +40,17 @@ class AdminController extends Controller
         $data = ['name'=> $user_current['name']];
         $this->sendMail("emails/reviews_add", $data, $user_current['name'], $user_current['email']);
 
-
-
         return ['data' =>  1];
+    }
+
+    public function hallcountget(Request $request){
+        $hallcount = Hall::select('count')->where('id_hall', $request->id)->first();
+        return $hallcount;
+    }
+
+    public function dancenamegetusers(Request $request){
+        $dancecount = Dance_lesson::select('id_user')->where('id_lesson', $request->id)->first();
+        return $dancecount;
     }
 
     private function auth_admin(){
@@ -100,6 +109,7 @@ class AdminController extends Controller
                 $dance->lesson_price = $data["price"];
                 $dance->lesson_img = $filename;
                 $dance->id_direction =  $request->direction;
+                $dance->id_user =  $request->couch;
                 $dance->save();
             }
             return redirect('/lessonTable');
@@ -114,7 +124,8 @@ class AdminController extends Controller
     {
         if($this->auth_admin()){
             $directions = dance_direction::get();
-            return view('lessonAdd', ['directions' => $directions]);
+            $users = User::where("id_role", 3)->get();
+            return view('lessonAdd', ['directions' => $directions, 'users' => $users]);
         }
         else{
             return redirect('/');
@@ -134,9 +145,11 @@ class AdminController extends Controller
     public function lessonEdit($id)
     {
         if($this->auth_admin()){
-            $tables = Dance_lesson::join("Dance_direction", "Dance_direction.id_direction", "Dance_lesson.id_direction")->where("id_lesson", $id)->get();
+            $tables = Dance_lesson::join("Dance_direction", "Dance_direction.id_direction", "Dance_lesson.id_direction")->
+            join("Users", "Users.id", "Dance_lesson.id_user")->where("id_lesson", $id)->get();
             $dance_direction = Dance_direction::all();
-            return view('lessonEdit', ['tableEdit' => $tables, 'dance_direction' => $dance_direction]);
+            $users = User::where("id_role", 3)->get();
+            return view('lessonEdit', ['tableEdit' => $tables, 'dance_direction' => $dance_direction, 'users' => $users]);
         }
         else{
             return redirect('/');
@@ -172,7 +185,8 @@ class AdminController extends Controller
                     'things' => $data["things"],
                     'lesson_price' => $data["price"],
                     'lesson_img' => $filename,
-                    'id_direction' => $direction_id[0]
+                    'id_direction' => $direction_id[0],
+                    'id_user' => $request->user,
                 ]);
             } else {
                 Dance_lesson::where('id_lesson', $request->id_lesson)->update
@@ -182,7 +196,8 @@ class AdminController extends Controller
                     'lesson_description_all' => $data["about_all"],
                     'things' => $data["things"],
                     'lesson_price' => $data["price"],
-                    'id_direction' => $direction_id[0]
+                    'id_direction' => $direction_id[0],
+                    'id_user' => $request->user,
                 ]);
             }
             return redirect('/lessonTable');
@@ -319,18 +334,21 @@ class AdminController extends Controller
         if($this->auth_admin()){
             $method = $request->method();
             if ($request->isMethod('post')){
-                $data = Records_clients::join("Users", "Records_clients.id_user", "Users.id")
-                    ->join("Schedule", "Schedule.id_schedule", "Records_clients.id_schedule")
-                    ->join("Dance_lesson", "Dance_lesson.id_lesson", "Schedule.id_lesson")
-                    ->join("Hall", "Hall.id_hall", "Schedule.id_hall")
-                    ->orWhere('Users.name', 'like', $request->search . '%')
+                $data = Records_clients::join("users", "records_clients.id_user", "users.id")
+                    ->join("schedule", "schedule.id_schedule", "records_clients.id_schedule")
+                    ->join("dance_lesson", "dance_lesson.id_lesson", "schedule.id_lesson")
+                    ->join("hall", "hall.id_hall", "schedule.id_hall")
+                    ->orWhere('users.name', 'like', $request->search . '%')
                     ->get();
             }
             else{
-                $data = Records_clients::join("Users", "Records_clients.id_user", "Users.id")
-                    ->join("Schedule", "Schedule.id_schedule", "Records_clients.id_schedule")
-                    ->join("Dance_lesson", "Dance_lesson.id_lesson", "Schedule.id_lesson")
-                    ->join("Hall", "Hall.id_hall", "Schedule.id_hall")->orderBy("Schedule.date_lesson", 'DESC')
+                $data = Records_clients::select('users.id', 'records_clients.id_record', 'users.name', 'schedule.date_lesson', 'dance_lesson.lesson_name', 'dance_lesson.lesson_price', 'hall.hall_name', 'records_clients.attendance', 'orders.suc', 'records_clients.pay')
+                    ->join("users", "records_clients.id_user", "users.id", "orders.suc")
+                    ->join("schedule", "schedule.id_schedule", "records_clients.id_schedule")
+                    ->join("dance_lesson", "dance_lesson.id_lesson", "schedule.id_lesson")
+                    ->join("hall", "hall.id_hall", "schedule.id_hall")
+                    ->leftjoin("orders", "records_clients.id_record", "orders.id")
+                    ->orderBy("schedule.date_lesson", 'DESC')
                     ->get();
             }
 
@@ -341,3 +359,4 @@ class AdminController extends Controller
         }
     }
 }
+

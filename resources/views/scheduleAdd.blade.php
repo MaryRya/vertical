@@ -46,10 +46,10 @@
                         <label for="hall"
                                class="block text-sm font-medium leading-6 text-gray-900">Зал</label>
                         <div class="mt-2">
-                            <select id="hall" name="id_hall" autocomplete="hall"
+                            <select id="hall"  name="id_hall" autocomplete="hall"
                                     class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
                                 @foreach ($hall_all as $dl)
-                                    <option value="{{$dl->id_hall}}">{{$dl->hall_name}}</option>
+                                    <option value="{{$dl->id_hall}}"  >{{$dl->hall_name}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -61,7 +61,7 @@
                             <select id="coach" name="id_user" autocomplete="coach"
                                     class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
                                 @foreach ($users_3 as $dl)
-                                    <option value="{{$dl->id}}">{{$dl->name}}</option>
+                                    <option value="{{$dl->id}}" id="usersel_{{$dl->id}}">{{$dl->name}}</option>
 
                                 @endforeach
 
@@ -71,8 +71,8 @@
                     <div class="sm:col-span-3">
                         <label class="block text-sm font-medium leading-6 text-gray-900">Количесво мест</label >
                         <div class="mt-2">
-                            <input type="number" name="count_places" id="count" required min="1" max="5"
-                                   class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
+                            <input type="number" name="count_places" readonly id="count" required min="1" max="5"
+                                   class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6" value="5">
                         </div>
                     </div>
                     <div class="sm:col-span-3">
@@ -83,17 +83,17 @@
                         </div>
                     </div>
                     <div class="sm:col-span-3 flex mt-10">
-                        
+
 
                         <input id="fitbit" type="checkbox" value="w1"
-                           class="w-4 h-4 bg-white border-gray-300 rounded text-primary-600 focus:ring-primary-500"  name="w1"/>
+                               class="w-4 h-4 bg-white border-gray-300 rounded text-primary-600 focus:ring-primary-500"  name="w1"/>
                         <label for="fitbit" class="ml-2 mr-2 text-sm font-medium text-gray-900 ">
                             Пн
                         </label>
                         <input id="fitbit" type="checkbox" value="w2"
                                class="w-4 h-4 bg-white border-gray-300 rounded text-primary-600 focus:ring-primary-500" name="w2"/>
                         <label for="fitbit" class="ml-2 mr-2 text-sm font-medium text-gray-900 ">
-                           Вт
+                            Вт
                         </label>
                         <input id="fitbit" type="checkbox" value="w3"
                                class="w-4 h-4 bg-white border-gray-300 rounded text-primary-600 focus:ring-primary-500"  name="w3"/>
@@ -146,5 +146,64 @@
         </div>
     @endif
     <script src="{{ Vite::asset('resources/js/scripts.js') }}"></script>
+    <script type="text/javascript">
 
+        // function chengehall(){
+        //     console.log(this);
+        // }
+
+        var sel = document.getElementById('hall');
+
+        sel.onchange = function () {
+
+            var id=this.options[this.selectedIndex].value;
+
+            $.ajax({
+                url: "/hallcountget",
+                type:"GET",
+                data:{
+                    "_token": "{{ csrf_token() }}",
+                    id:id,
+                },
+                success:function(response){
+                    if(response !== 500){
+                        //window.location = "/schedule";
+                        //console.log(response['count']);
+                        document.getElementById('count').value = response['count']
+                    }
+                },
+            });
+
+        };
+
+        var sel = document.getElementById('name');
+
+        sel.onchange = function () {
+
+            var id=this.options[this.selectedIndex].value;
+
+            $.ajax({
+                url: "/dancenamegetusers",
+                type:"GET",
+                data:{
+                    "_token": "{{ csrf_token() }}",
+                    id:id,
+                },
+                success:function(response){
+                    if(response !== 500){
+                        //window.location = "/schedule";
+                        //console.log(response['count']);
+                        //document.getElementById('count').value = response['count']
+                        console.log(response);
+                        if(response['id_user'] !== 0){
+                            let a = document.getElementById('usersel_'+response['id_user']);
+                            a.selected = true;
+                        }
+
+                    }
+                },
+            });
+
+        };
+    </script>
 @endsection

@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Order;
 use App\Models\User;
 use App\Models\Chat;
 use App\Models\Dance_lesson;
@@ -25,7 +26,32 @@ class IndexController extends Controller
         }
         return false;
     }
+    public function api(Request $request){
+        //file_put_contents('1.txt', '1');
+        // Order::where('id', 2)->delete();
+        $method = $request->method();
+        if ($request->isMethod('post')){
+            $secret_seed = "vPcPKp6j.QBbj.c";
+            $id = $request->id;
+            $sum = $request->sum;
+            $clientid = $request->clientid;
+            $orderid = $request->orderid;
+            $key = $request->key;
 
+            if ($key != md5 ($id.number_format($sum, 2, ".", "")
+                    .$clientid.$orderid.$secret_seed))
+            {
+                echo "Error! Hash mismatch";
+                exit;
+            }
+
+            Order::where('id', $request->orderid)->update([
+                'suc' => 1
+            ]);
+            return redirect('/profile');
+        }
+
+    }
     public function reviewAction(Request $request)
     {
         if(isset(auth()->user()->name)){
@@ -76,6 +102,32 @@ class IndexController extends Controller
     public function payment(Request $request)
     {
         if (auth()->check()) {
+            $client_login = auth()->user()->email;
+
+            $or = Order::create([
+                'id_user' => auth()->user()->id,
+                'sum' => $_GET['price'],
+                'id_record' => $_GET['id_record'],
+                'suc' => 0,
+            ]);
+            $or->save();
+
+            $payment_parameters = http_build_query(array( "clientid"=>auth()->user()->name,
+                "orderid"=>$or->id,
+                "sum"=>$_GET["price"],
+                "client_phone"=>auth()->user()->phone,
+                "client_email"=>auth()->user()->email
+            ));
+
+            $options = array("http"=>array(
+                "method"=>"POST",
+                "header"=>
+                    "Content-type: application/x-www-form-urlencoded",
+                "content"=>$payment_parameters
+            ));
+            $context = stream_context_create($options);
+
+
             $chat_views = Chat::where([['id_user', '=', auth()->user()->id], ['view', '=', 0]]);
             $count = $chat_views->count();
 
@@ -89,7 +141,7 @@ class IndexController extends Controller
                 ]);
                 return redirect('/profile?date=3');
             }
-            return view('payment', ['count' => $count, 'datenow'=>date("Y-m-d")]);
+            return view('payment', ['count' => $count, 'datenow'=>date("Y-m-d"), 'context'=>$context]);
         }
         else return redirect('/');
 
@@ -148,6 +200,11 @@ class IndexController extends Controller
     {
         return redirect("/files/agreement1.pdf");
     }
+    public function dogovor()
+    {
+        return redirect("/files/dogovor.pdf");
+    }
+
 
     public function index()
     {

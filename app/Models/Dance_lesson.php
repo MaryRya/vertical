@@ -11,6 +11,7 @@ class Dance_lesson extends Model
     protected $table = 'dance_lesson';
     protected $fillable = ['lesson_name', 'lesson_description', 'lesson_description_all',
         'things',
+        'user',
         'lesson_price',
         'lesson_description',
         'img_lesson',

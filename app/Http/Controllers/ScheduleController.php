@@ -264,7 +264,6 @@ class ScheduleController extends Controller
     {
 
         $replay = [];
-
         if($request->w1 == 'w1')
             $replay[] = 1;
         if($request->w2 == 'w2')

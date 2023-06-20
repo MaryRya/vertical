@@ -47,7 +47,7 @@
                         </div>
                         <div class="flex items-start">
                             <input id="terms" aria-describedby="terms" type="checkbox" name="terms" class=" border-gray-300 rounded  hover:bg-blue-700 " required>
-                            <label for="terms" class="px-2 text-gray-500">Я согласен с <a class="font-medium text-primary-600 hover:underline" href="/agreement" target="_blank">Политикой конфиденциальности</a></label>
+                            <label for="terms" class="px-2 text-gray-500">Я согласен с <a class="font-medium text-primary-600 hover:underline" href="/agreement" target="_blank">Политикой конфиденциальности</a> и принимаю условия<a class="font-medium text-primary-600 hover:underline" href="/dogovor" target="_blank"> договора-оферты</a></label>
                         </div>
                         <button type="submit" class="w-full text-white bg-indigo-600 hover:bg-indigo-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center d">Зарегистрироваться</button>
                         <p class="text-sm font-light text-gray-500 ">

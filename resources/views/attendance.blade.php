@@ -61,19 +61,35 @@
                                 @endif
 
                             @endif
-                            <a class="md:text-sm text-xs font-medium text-gray-500 mr-2 ml-2">Оплата</a>
+                            <a class="md:text-sm text-xs font-medium text-gray-500 mr-2">Присутсвие</a>
                             @if ($d->date_lesson == date("Y-m-d"))
-                                @if ($d->pay == 1)
+                                @if ($d->attendance == 1)
                                     <input id="check_{{$d->id_record}}" onclick="terms_check({{$d->id_record}}, '{{ csrf_token() }}')" aria-describedby="terms" type="checkbox" name="terms" class=" border-gray-300 rounded  hover:bg-blue-700 " required checked>
                                 @else
                                     <input id="check_{{$d->id_record}}" onclick="terms_check({{$d->id_record}}, '{{ csrf_token() }}')" aria-describedby="terms" type="checkbox" name="terms" class=" border-gray-300 rounded  hover:bg-blue-700 " required>
                                 @endif
-                             @else
+                            @else
+                                @if ($d->attendance == 1)
+                                    <input aria-describedby="terms" type="checkbox" name="terms" class=" border-gray-300 rounded  hover:bg-blue-700 " required disabled  checked>
+                                @else
+                                    <input aria-describedby="terms" type="checkbox" name="terms" class=" border-gray-300 rounded  hover:bg-blue-700 " required disabled >
+                                @endif
+
+                            @endif
+                            <a class="md:text-sm text-xs font-medium text-gray-500 mr-2 ml-2">Оплата</a>
+                            @if ($d->date_lesson == date("Y-m-d"))
                                 @if ($d->pay == 1)
-                                <input aria-describedby="terms" type="checkbox" name="terms" class=" border-gray-300 rounded  hover:bg-blue-700 " required disabled checked>
+                                    <input id="check_{{$d->id_record}}" aria-describedby="terms" type="checkbox" name="terms" class=" border-gray-300 rounded  hover:bg-blue-700 " required checked>
+                                @else
+                                    <input id="check_{{$d->id_record}}" onclick="terms_check({{$d->id_record}}, '{{ csrf_token() }}')" aria-describedby="terms" type="checkbox" name="terms" class=" border-gray-300 rounded  hover:bg-blue-700 " required>
+                                @endif
+                            @else
+                                @if ($d->pay == 1)
+                                    {{$d->suc}}
+                                    <input aria-describedby="terms" type="checkbox" name="terms" class=" border-gray-300 rounded  hover:bg-blue-700 " required disabled checked>
                                 @else
 
-                                <input aria-describedby="terms" type="checkbox" name="terms" class=" border-gray-300 rounded  hover:bg-blue-700 " required disabled>
+                                    <input aria-describedby="terms" type="checkbox" name="terms" class=" border-gray-300 rounded  hover:bg-blue-700 " required disabled>
                                 @endif
                             @endif
                         </div>

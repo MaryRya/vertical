@@ -9,7 +9,7 @@ class Hall extends Model
 {
     use HasFactory;
     protected $table = 'hall';
-    protected $fillable = ['hall_name'];
+    protected $fillable = ['hall_name', 'count'];
     protected  $guarded = ['id_hall'];
 
 }
